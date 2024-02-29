@@ -32,24 +32,24 @@ const Login = () => {
   const onFinish = (values: any) => {
     if (isRegistering) {
 
-      const existingUser = users.find(
-        (user: any) => user.username === values.username
+      const existingUser = users?.find(
+        (user: any) => user?.username === values?.username
       );
       if (existingUser) {
         setError("Error: User already exists.");
         return;
       }
 
-      if (values.password === confirmPassword) {
+      if (values?.password === confirmPassword) {
         const newUser = {
-          username: values.username,
-          password: values.password,
+          username: values?.username,
+          password: values?.password,
           name,
           surname,
           phone,
         };      
 
-        users.push(newUser);
+        users?.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
         message.success("Registration successful! You can now log in.");
         setIsRegistering(false);
@@ -58,9 +58,9 @@ const Login = () => {
         setError("Error: Passwords do not match.");
       }
     } else {
-      const foundUser = users.find(
+      const foundUser = users?.find(
         (user: any) =>
-          user.username === values.username && user.password === values.password
+          user?.username === values?.username && user?.password === values?.password
       );
       if (foundUser) { 
         localStorage.setItem("currentUser", JSON.stringify(foundUser));
@@ -91,7 +91,7 @@ const Login = () => {
           <Input
             prefix={<UserOutlined />}
             placeholder="Username"
-            value={username !== null ? username : ""}
+            value={username ?? ""}
             onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Item>
@@ -103,7 +103,7 @@ const Login = () => {
             prefix={<LockOutlined />}
             type="password"
             placeholder="Password"
-            value={password !== null ? password : ""}
+            value={password ?? ""}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Item>
@@ -117,7 +117,7 @@ const Login = () => {
             >
               <Input.Password
                 placeholder="Confirm Password"
-                value={confirmPassword !== null ? confirmPassword : ""}
+                value={confirmPassword ?? ""}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </Form.Item>
@@ -127,7 +127,7 @@ const Login = () => {
             >
               <Input
                 placeholder="Name"
-                value={name !== null ? name : ""}
+                value={name ?? ""}
                 onChange={(e) => setName(e.target.value)}
               />
             </Form.Item>
@@ -139,7 +139,7 @@ const Login = () => {
             >
               <Input
                 placeholder="Surname"
-                value={surname !== null ? surname : ""}
+                value={surname ?? ""}
                 onChange={(e) => setSurname(e.target.value)}
               />
             </Form.Item>
@@ -150,8 +150,8 @@ const Login = () => {
             >
               <Input
                 placeholder="Phone"
-                value={phone !== null ? phone.toString() : ""}
-                onChange={(e) => setPhone(e.target.value !== "" ? e.target.value : null)}
+                value={phone ?? ""}
+                onChange={(e) => setPhone(e.target.value ?? null)}
               />
             </Form.Item>
           </>
