@@ -5,12 +5,12 @@ import styles from "./Login.module.scss";
 
 const Login = () => {
   const [error, setError] = useState<string | null>(null);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [phone, setPhone] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+  const [name, setName] = useState<string | null>(null);
+  const [surname, setSurname] = useState<string | null>(null);
+  const [phone, setPhone] = useState<number | null>(null);
+  const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
 
   const [isRegistering, setIsRegistering] = useState(false);
 
@@ -78,7 +78,7 @@ const Login = () => {
           <Input
             prefix={<UserOutlined />}
             placeholder="Username"
-            value={username}
+            value={username !== null ? username : ""}
             onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Item>
@@ -90,7 +90,7 @@ const Login = () => {
             prefix={<LockOutlined />}
             type="password"
             placeholder="Password"
-            value={password}
+            value={password !== null ? password : ""}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Item>
@@ -104,7 +104,7 @@ const Login = () => {
             >
               <Input.Password
                 placeholder="Confirm Password"
-                value={confirmPassword}
+                value={confirmPassword !== null ? confirmPassword : ""}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </Form.Item>
@@ -114,7 +114,7 @@ const Login = () => {
             >
               <Input
                 placeholder="Name"
-                value={name}
+                value={name !== null ? name : ""}
                 onChange={(e) => setName(e.target.value)}
               />
             </Form.Item>
@@ -126,7 +126,7 @@ const Login = () => {
             >
               <Input
                 placeholder="Surname"
-                value={surname}
+                value={surname !== null ? surname : ""}
                 onChange={(e) => setSurname(e.target.value)}
               />
             </Form.Item>
@@ -137,8 +137,8 @@ const Login = () => {
             >
               <Input
                 placeholder="Phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={phone !== null ? phone.toString() : ""}
+                onChange={(e) => setPhone(parseInt(e.target.value))}
               />
             </Form.Item>
           </>
