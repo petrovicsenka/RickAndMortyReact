@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Card, Form, Input, Button, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./Login.module.scss";
-import { FormValues } from "../../interfaces/FormValues.interface";
 import { User } from "../../interfaces/User.interface";
 
 const Login = () => {
@@ -46,7 +45,7 @@ const Login = () => {
     setUsers(storedUsers);
   }, []);
 
-  const onFinish = (values: FormValues) => {
+  const onFinish = (values: User) => {
     if (isRegistering) {
 
       const existingUser = users?.find(
