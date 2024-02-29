@@ -63,6 +63,11 @@ const Login = () => {
     setIsRegistering(true);
   };
 
+  const backToLogin = () => {
+    setIsRegistering(false);
+    setError(null);
+  };
+
   return (
     <Card className={styles["card-container"]}>
       <Form name="login" onFinish={onFinish}>
@@ -140,6 +145,15 @@ const Login = () => {
         )}
         {error && <div className={styles["error"]}>{error}</div>}
         <Form.Item>
+          {isRegistering && (
+              <Button 
+                type="link"
+                onClick={backToLogin}
+                className={styles["login-button"]}
+              >
+                Back
+              </Button>
+          )}
           <Button
             type="primary"
             htmlType="submit"
