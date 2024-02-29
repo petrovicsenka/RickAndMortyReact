@@ -5,6 +5,21 @@ import styles from "./Login.module.scss";
 
 const Login = () => {
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (error) {
+      message.error(error);
+    }
+  }, [error]);
+
+  const [success, setSuccess] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (success) {
+      message.success(success);
+    }
+  }, [success]);
+
   const [username, setUsername] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
@@ -51,7 +66,7 @@ const Login = () => {
 
         users?.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
-        message.success("Registration successful! You can now log in.");
+        setSuccess("Registration successful! You can now log in.");
         setIsRegistering(false);
         setError(null);
       } else {
@@ -64,7 +79,7 @@ const Login = () => {
       );
       if (foundUser) { 
         localStorage.setItem("currentUser", JSON.stringify(foundUser));
-        message.success("Logged in successfully!");
+        setSuccess("Logged in successfully!");
         setError(null);
       } else {
         setError("Error: Wrong username or password.");
@@ -156,7 +171,6 @@ const Login = () => {
             </Form.Item>
           </>
         )}
-        {error && <div className={styles["error"]}>{error}</div>}
         <Form.Item>
           {isRegistering && (
               <Button 
