@@ -22,11 +22,7 @@ const Login = () => {
     }
   }, [success]);
 
-  const [username, setUsername] = useState<string | null>(null);
-  const [password, setPassword] = useState<string | null>(null);
-  const [name, setName] = useState<string | null>(null);
-  const [surname, setSurname] = useState<string | null>(null);
-  const [phone, setPhone] = useState<string | null>(null);
+  // zadrzala sam useState samo za confirmPassword da ne bih njegovu vrednost cuvala u User interfejsu, odnosno da ne bih dva puta istu sifru cuvala (a potrebna mi je ta vrednost prilikom poredjenja sa vrednoscu password):
   const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
 
   const [isRegistering, setIsRegistering] = useState(false);
@@ -36,7 +32,7 @@ const Login = () => {
     password: null,
     name: null,
     surname: null,
-    phone: null,
+    phone: null
   };
   
   const [users, setUsers] = useState<User[]>([initialUser]);
@@ -50,7 +46,7 @@ const Login = () => {
     if (isRegistering) {
 
       const existingUser = users?.find(
-        (user: any) => user?.username === values?.username
+        (user) => user?.username === values?.username
       );
       if (existingUser) {
         setError("Error: User already exists.");
@@ -61,9 +57,9 @@ const Login = () => {
         const newUser = {
           username: values?.username,
           password: values?.password,
-          name,
-          surname,
-          phone,
+          name: values?.name,
+          surname: values?.surname,
+          phone: values?.phone
         };      
 
         users?.push(newUser);
@@ -76,7 +72,7 @@ const Login = () => {
       }
     } else {
       const foundUser = users?.find(
-        (user: any) =>
+        (user) =>
           user?.username === values?.username && user?.password === values?.password
       );
       if (foundUser) { 
@@ -106,8 +102,6 @@ const Login = () => {
           rules={[{ required: true, message: "Please input your username!" }]}
           prefix={<UserOutlined />}
           placeholder="Username"
-          value={username}
-          onChange={setUsername}
         />
         <CustomInput
           name="password"
@@ -115,8 +109,6 @@ const Login = () => {
           prefix={<LockOutlined />}
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={setPassword}
         />
         {isRegistering && (
           <>
@@ -134,8 +126,6 @@ const Login = () => {
               name="name"
               rules={[{ required: true, message: "Please input your name!" }]}
               placeholder="Name"
-              value={name}
-              onChange={setName}
             />
             <CustomInput
               name="surname"
@@ -143,8 +133,6 @@ const Login = () => {
                 { required: true, message: "Please input your surname!" },
               ]}
               placeholder="Surname"
-              value={surname}
-              onChange={setSurname}
             />
             <CustomInput
               name="phone"
@@ -156,8 +144,6 @@ const Login = () => {
                 },
               ]}
               placeholder="Phone"
-              value={phone}
-              onChange={setPhone}
             />
           </>
         )}

@@ -25,7 +25,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         placeholder={placeholder}
         type={type === "password" && !isPasswordVisible ? "password" : "text"}
         value={value || ""}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange?.(e.target.value)}
         suffix={
           type === "password" ? (
             <>

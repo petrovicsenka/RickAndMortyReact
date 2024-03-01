@@ -8,6 +8,6 @@ export interface CustomInputProps {
   }[];
   prefix?: JSX.Element;
   placeholder: string;
-  value: string | null;
-  onChange: React.Dispatch<React.SetStateAction<string | null>>;
+  value?: string | null;
+  onChange?: (value: string) => void;
 }
