@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Card, Form, Input, Button, message } from "antd";
+import { Card, Form, Button, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./Login.module.scss";
 import { User } from "../../interfaces/User.interface";
+import CustomInput from "../../components/CustomInput";
 
 const Login = () => {
   const [error, setError] = useState<string | null>(null);
@@ -100,76 +101,64 @@ const Login = () => {
   return (
     <Card className={styles["card-container"]}>
       <Form name="login" onFinish={onFinish}>
-        <Form.Item
+        <CustomInput
           name="username"
           rules={[{ required: true, message: "Please input your username!" }]}
-        >
-          <Input
-            prefix={<UserOutlined />}
-            placeholder="Username"
-            value={username ?? ""}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Item>
-        <Form.Item
+          prefix={<UserOutlined />}
+          placeholder="Username"
+          value={username}
+          onChange={setUsername}
+        />
+        <CustomInput
           name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
-        >
-          <Input
-            prefix={<LockOutlined />}
-            type="password"
-            placeholder="Password"
-            value={password ?? ""}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Item>
+          prefix={<LockOutlined />}
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={setPassword}
+        />
         {isRegistering && (
           <>
-            <Form.Item
+            <CustomInput
               name="confirmPassword"
               rules={[
                 { required: true, message: "Please confirm your password!" },
               ]}
-            >
-              <Input.Password
-                placeholder="Confirm Password"
-                value={confirmPassword ?? ""}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </Form.Item>
-            <Form.Item
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={setConfirmPassword}
+            />
+            <CustomInput
               name="name"
               rules={[{ required: true, message: "Please input your name!" }]}
-            >
-              <Input
-                placeholder="Name"
-                value={name ?? ""}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </Form.Item>
-            <Form.Item
+              placeholder="Name"
+              value={name}
+              onChange={setName}
+            />
+            <CustomInput
               name="surname"
               rules={[
                 { required: true, message: "Please input your surname!" },
               ]}
-            >
-              <Input
-                placeholder="Surname"
-                value={surname ?? ""}
-                onChange={(e) => setSurname(e.target.value)}
-              />
-            </Form.Item>
-            <Form.Item
+              placeholder="Surname"
+              value={surname}
+              onChange={setSurname}
+            />
+            <CustomInput
               name="phone"
-              rules={[{ required: true, message: "Please input your phone!" },
-              { pattern: /^[0-9]+$/, message: "Please enter a valid phone number!" }]}
-            >
-              <Input
-                placeholder="Phone"
-                value={phone ?? ""}
-                onChange={(e) => setPhone(e.target.value ?? null)}
-              />
-            </Form.Item>
+              rules={[
+                { required: true, message: "Please input your phone!" },
+                {
+                  pattern: /^[0-9]+$/,
+                  message: "Please enter a valid phone number!",
+                },
+              ]}
+              placeholder="Phone"
+              value={phone}
+              onChange={setPhone}
+            />
           </>
         )}
         <Form.Item>
