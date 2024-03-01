@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, Form, Input, Button, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./Login.module.scss";
@@ -9,12 +9,25 @@ const Login = () => {
   const [password, setPassword] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
   const [surname, setSurname] = useState<string | null>(null);
-  const [phone, setPhone] = useState<number | null>(null);
+  const [phone, setPhone] = useState<string | null>(null);
   const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
 
   const [isRegistering, setIsRegistering] = useState(false);
 
-  const users = JSON.parse(localStorage.getItem("users") || "[]");
+  const initialUser: User = {
+    username: null,
+    password: null,
+    name: null,
+    surname: null,
+    phone: null,
+  };
+  
+  const [users, setUsers] = useState<User[]>([initialUser]);
+
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    setUsers(storedUsers);
+  }, []);
 
   const onFinish = (values: any) => {
     if (isRegistering) {
@@ -34,7 +47,7 @@ const Login = () => {
           name,
           surname,
           phone,
-        };
+        };      
 
         users.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
@@ -138,7 +151,7 @@ const Login = () => {
               <Input
                 placeholder="Phone"
                 value={phone !== null ? phone.toString() : ""}
-                onChange={(e) => setPhone(parseInt(e.target.value))}
+                onChange={(e) => setPhone(e.target.value !== "" ? e.target.value : null)}
               />
             </Form.Item>
           </>
