@@ -4,8 +4,11 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./Login.module.scss";
 import { User } from "../../interfaces/User.interface";
 import CustomInput from "../../components/CustomInput";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const { t } = useTranslation();
+
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -49,7 +52,7 @@ const Login = () => {
         (user) => user?.username === values?.username
       );
       if (existingUser) {
-        setError("Error: User already exists.");
+        setError(t('usernameExists'));
         return;
       }
 
@@ -64,11 +67,11 @@ const Login = () => {
 
         users?.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
-        setSuccess("Registration successful! You can now log in.");
+        setSuccess(t('registrationSuccess'));
         setIsRegistering(false);
         setError(null);
       } else {
-        setError("Error: Passwords do not match.");
+        setError(t('passwordsDoNotMatch'));
       }
     } else {
       const foundUser = users?.find(
@@ -77,10 +80,10 @@ const Login = () => {
       );
       if (foundUser) { 
         localStorage.setItem("currentUser", JSON.stringify(foundUser));
-        setSuccess("Logged in successfully!");
+        setSuccess(t('loggedInSuccessfully'));
         setError(null);
       } else {
-        setError("Error: Wrong username or password.");
+        setError(t('wrongCredentials'));
       }
     }
   };
@@ -99,51 +102,47 @@ const Login = () => {
       <Form name="login" onFinish={onFinish}>
         <CustomInput
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[{ required: true, message: `${t('pleaseInput')} ${t('usernameLabel')}!` }]}
           prefix={<UserOutlined />}
-          placeholder="Username"
+          placeholder={t('usernamePlaceholder')}
         />
         <CustomInput
           name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
+          rules={[{ required: true, message: `${t('pleaseInput')} ${t('passwordLabel')}!` }]}
           prefix={<LockOutlined />}
           type="password"
-          placeholder="Password"
+          placeholder={t('passwordPlaceholder')}
         />
         {isRegistering && (
           <>
             <CustomInput
               name="confirmPassword"
-              rules={[
-                { required: true, message: "Please confirm your password!" },
-              ]}
+              rules={[{ required: true, message: `${t('pleaseConfirm')} ${t('passwordLabel')}!` }]}
               type="password"
-              placeholder="Confirm Password"
+              placeholder={t('confirmPasswordPlaceholder')}
               value={confirmPassword}
               onChange={setConfirmPassword}
             />
             <CustomInput
               name="name"
-              rules={[{ required: true, message: "Please input your name!" }]}
-              placeholder="Name"
+              rules={[{ required: true, message: `${t('pleaseInput')} ${t('nameLabel')}!` }]}
+              placeholder={t('namePlaceholder')}
             />
             <CustomInput
               name="surname"
-              rules={[
-                { required: true, message: "Please input your surname!" },
-              ]}
-              placeholder="Surname"
+              rules={[{ required: true, message: `${t('pleaseInput')} ${t('surnameLabel')}!` }]}
+              placeholder={t('surnamePlaceholder')}
             />
             <CustomInput
               name="phone"
               rules={[
-                { required: true, message: "Please input your phone!" },
+                { required: true, message: `${t('pleaseInput')} ${t('phoneLabel')}!` },
                 {
                   pattern: /^[0-9]+$/,
-                  message: "Please enter a valid phone number!",
+                  message: `${t('pleaseEnterValidPhone')}`,
                 },
               ]}
-              placeholder="Phone"
+              placeholder={t('phonePlaceholder')}
             />
           </>
         )}
@@ -154,7 +153,7 @@ const Login = () => {
                 onClick={backToLogin}
                 className={styles["login-button"]}
               >
-                Back
+                {t('back')}
               </Button>
           )}
           <Button
@@ -162,11 +161,11 @@ const Login = () => {
             htmlType="submit"
             className={styles["login-button"]}
           >
-            {isRegistering ? "Submit" : "Log in"}
+            {isRegistering ? t('submit') : t('login')}
           </Button>
           {!isRegistering && (
             <Button type="link" onClick={onRegisterClick}>
-              Register
+              {t('register')}
             </Button>
           )}
         </Form.Item>
