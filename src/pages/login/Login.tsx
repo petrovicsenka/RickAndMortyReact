@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Card, Form, Button, message } from "antd";
+import { useState, useEffect, useRef } from "react";
+import { Card, Form, Button, message, FormInstance } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./Login.module.scss";
 import { User } from "../../interfaces/User.interface";
@@ -69,7 +69,6 @@ const Login = () => {
         localStorage.setItem("users", JSON.stringify(users));
         setSuccess(t('registrationSuccess'));
         setIsRegistering(false);
-        setError(null);
       } else {
         setError(t('passwordsDoNotMatch'));
       }
@@ -81,7 +80,6 @@ const Login = () => {
       if (foundUser) { 
         localStorage.setItem("currentUser", JSON.stringify(foundUser));
         setSuccess(t('loggedInSuccessfully'));
-        setError(null);
       } else {
         setError(t('wrongCredentials'));
       }
@@ -90,16 +88,20 @@ const Login = () => {
 
   const onRegisterClick = () => {
     setIsRegistering(true);
+    formRef.current?.resetFields();
   };
 
   const backToLogin = () => {
     setIsRegistering(false);
     setError(null);
+    formRef.current?.resetFields(); 
   };
+
+  const formRef = useRef<FormInstance>(null);
 
   return (
     <Card className={styles["card-container"]}>
-      <Form name="login" onFinish={onFinish}>
+      <Form name="login" onFinish={onFinish} ref={formRef}>
         <CustomInput
           name="username"
           rules={[{ required: true, message: `${t('pleaseInput')} ${t('usernameLabel')}!` }]}
