@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Card, Form, Button, message, FormInstance } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./Login.module.scss";
@@ -8,6 +9,7 @@ import { User } from "../../types";
 
 const Login = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -77,6 +79,7 @@ const Login = () => {
       if (foundUser) { 
         localStorage.setItem("currentUser", JSON.stringify(foundUser));
         setSuccess(t('loggedInSuccessfully'));
+        navigate('/character');
       } else {
         setError(t('wrongCredentials'));
       }
