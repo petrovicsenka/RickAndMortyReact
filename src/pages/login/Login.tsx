@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Card, Form, Button, message, FormInstance } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./Login.module.scss";
-import { User } from "../../interfaces/User.interface";
 import CustomInput from "../../components/CustomInput";
 import { useTranslation } from "react-i18next";
+import { User } from "../../types";
 
 const Login = () => {
   const { t } = useTranslation();
