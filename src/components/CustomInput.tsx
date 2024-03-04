@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input, Form } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import { CustomInputProps } from "../interfaces/CustomInputProps.interface";
+import { CustomInputProps } from "./CustomInputProps.interface";
 
 const CustomInput: React.FC<CustomInputProps> = ({
   type,
