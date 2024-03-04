@@ -1,0 +1,23 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vh 2vw;
+    background-color: #f0f0f0;
+    border-bottom: 0.1vh solid #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 98%;
+}
+
+.title {
+    font-size: 3vh;
+    font-weight: bold;
+    color: #333;
+}
+
+.button {
+    margin-right: 2vw;
+    background-color: #c6d3e3;
+}

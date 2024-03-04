@@ -1,7 +1,11 @@
+import Header from "../../components/Header/Header";
+
 const CharacterContent = () => {
 
     return (
-        <p>This is Character Content</p>
+        <>
+            <Header />
+        </>
     );
     
 }

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Form, Button, message, FormInstance } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./Login.module.scss";
-import CustomInput from "../../components/CustomInput";
+import CustomInput from "../../components/CustomInput/CustomInput";
 import { useTranslation } from "react-i18next";
 import { User } from "../../types";
 
