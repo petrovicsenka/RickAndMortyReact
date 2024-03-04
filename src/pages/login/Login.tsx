@@ -10,24 +10,9 @@ const Login = () => {
   const { t } = useTranslation();
 
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (error) {
-      message.error(error);
-    }
-  }, [error]);
-
   const [success, setSuccess] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (success) {
-      message.success(success);
-    }
-  }, [success]);
-
   // zadrzala sam useState samo za confirmPassword da ne bih njegovu vrednost cuvala u User interfejsu, odnosno da ne bih dva puta istu sifru cuvala (a potrebna mi je ta vrednost prilikom poredjenja sa vrednoscu password):
   const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
-
   const [isRegistering, setIsRegistering] = useState(false);
 
   const initialUser: User = {
@@ -39,6 +24,18 @@ const Login = () => {
   };
   
   const [users, setUsers] = useState<User[]>([initialUser]);
+
+  useEffect(() => {
+    if (error) {
+      message.error(error);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (success) {
+      message.success(success);
+    }
+  }, [success]);
 
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
