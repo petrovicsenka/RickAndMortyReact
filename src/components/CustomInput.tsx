@@ -1,7 +1,20 @@
 import { useState } from "react";
 import { Input, Form } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import { CustomInputProps } from "./CustomInputProps.interface";
+
+export interface CustomInputProps {
+  type?: string;
+  name: string;
+  rules: {
+    required?: boolean;
+    message: string;
+    pattern?: RegExp;
+  }[];
+  prefix?: JSX.Element;
+  placeholder: string;
+  value?: string | null;
+  onChange?: (value: string) => void;
+}
 
 const CustomInput: React.FC<CustomInputProps> = ({
   type,
