@@ -1,0 +1,18 @@
+.characterItem {
+    margin: 0 0.5vh;
+    display: inline-block;
+
+    img {
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    img:hover {
+        transform: scale(1.1);
+        filter: brightness(60%);
+    }
+}
+
+.characters {
+    margin-top: 5vh;
+}
