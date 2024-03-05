@@ -1,3 +1,4 @@
+import CharacterList from "../../components/CharacterList/CharacterList";
 import Header from "../../components/Header/Header";
 
 const CharacterContent = () => {
@@ -5,6 +6,7 @@ const CharacterContent = () => {
     return (
         <>
             <Header />
+            <CharacterList />
         </>
     );
     
