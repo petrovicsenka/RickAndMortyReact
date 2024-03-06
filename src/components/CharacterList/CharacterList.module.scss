@@ -17,6 +17,35 @@
   margin-top: 2.5vh;
 }
 
+// Sacuvala sam zakomentarisane jos neke dimenzije ekrana koje sam proveravala (720x1280 i 750x1334) - ali za njih nije bilo potrebe za dodatnim stilovima:
+
+//example: 480x800
 .pagination {
-  margin-top: 5vh;
+  margin-top: 9vh;
+}
+
+@media screen and (min-width: 640px) and (min-height: 1136px) {
+  .pagination {
+    margin-top: 6vh;
+  }
+}
+
+// @media screen and (min-width: 720px) and (min-height: 1280px) {
+//   //sve ok
+// }
+
+// @media screen and (min-width: 750px) and (min-height: 1334px) {
+//   //sve ok
+// }
+
+@media screen and (min-width: 1080px) and (min-height: 1920px)  {
+  .pagination {
+    margin-top: 7vh;
+  }
+}
+
+@media screen and (min-width: 1440px) and (min-height: 2560px) {
+  .pagination {
+    margin-top: 6vh;
+  }
 }
