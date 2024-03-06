@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useQuery } from "react-query";
 import { Pagination } from "antd";
 import styles from "./CharacterList.module.scss";
 import { useState } from "react";
+import { getCharacters } from "./CharacterList.service";
 
 // TO UPDATE?
 interface Character {
@@ -15,13 +15,6 @@ interface Character {
 }
 
 const PER_PAGE = 30;
-
-const getCharacters = async (page: number) => {
-  let apiUrl = `https://rickandmortyapi.com/api/character?page=${page}`;
-  const response = await axios.get(apiUrl);
-
-  return response?.data;
-};
 
 const CharacterList = () => {
   const [currentPage, setCurrentPage] = useState(1);
