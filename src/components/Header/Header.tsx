@@ -8,13 +8,12 @@ const navigateToFavourites = () => {
   // navigate('/favourites');
 };
 
-//TO DO
-const logout = () => {
-  console.log("Log out");
-};
-
 const Header = () => {
   const navigate = useNavigate();
+
+  const logout = () => {
+    navigate('/login');
+  };
 
   return (
     <>
