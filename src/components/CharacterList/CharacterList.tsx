@@ -4,7 +4,6 @@ import styles from "./CharacterList.module.scss";
 import { useState } from "react";
 import { getCharacters } from "./CharacterList.service";
 
-// TO UPDATE?
 interface Character {
   id: number;
   name: string;
@@ -12,11 +11,18 @@ interface Character {
   species: string;
   gender: string;
   image: string;
+  location: {
+    name: string;
+  };
+}
+
+interface CharacterListProps {
+  searchFilter: string | null;
 }
 
 const PER_PAGE = 30;
 
-const CharacterList = () => {
+const CharacterList: React.FC<CharacterListProps> = ({ searchFilter }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading, isError } = useQuery(
     ["characters", currentPage],
@@ -29,6 +35,17 @@ const CharacterList = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
+  const filteredCharacters = data.results.filter((character: Character) => {
+    if (!searchFilter) return true;
+    const filterLowerCase = searchFilter.toLowerCase();
+    return (
+      character.name.toLowerCase().includes(filterLowerCase) ||
+      character.status.toLowerCase().includes(filterLowerCase) ||
+      character.species.toLowerCase().includes(filterLowerCase) ||
+      character.location.name.toLowerCase().includes(filterLowerCase)
+    );
+  });
 
   const pageCount = data.info.pages;
 
@@ -44,7 +61,7 @@ const CharacterList = () => {
         />
       </div>
       <div className={styles.characters}>
-        {data?.results?.map((character: Character) => (
+        {filteredCharacters?.map((character: Character) => (
           <div key={character?.id} className={styles.characterItem}>
             <img src={character?.image} alt={character?.name} />
           </div>
