@@ -36,18 +36,18 @@ const CharacterList: React.FC<CharacterListProps> = ({ searchFilter }) => {
     setCurrentPage(page);
   };
 
-  const filteredCharacters = data.results.filter((character: Character) => {
+  const filteredCharacters = data?.results?.filter((character: Character) => {
     if (!searchFilter) return true;
-    const filterLowerCase = searchFilter.toLowerCase();
+    const filterLowerCase = searchFilter?.toLowerCase();
     return (
-      character.name.toLowerCase().includes(filterLowerCase) ||
-      character.status.toLowerCase().includes(filterLowerCase) ||
-      character.species.toLowerCase().includes(filterLowerCase) ||
-      character.location.name.toLowerCase().includes(filterLowerCase)
+      character?.name?.toLowerCase().includes(filterLowerCase) ||
+      character?.status?.toLowerCase().includes(filterLowerCase) ||
+      character?.species?.toLowerCase().includes(filterLowerCase) ||
+      character?.location?.name?.toLowerCase().includes(filterLowerCase)
     );
   });
 
-  const pageCount = data.info.pages;
+  const pageCount = data?.info?.pages;
 
   return (
     <>
