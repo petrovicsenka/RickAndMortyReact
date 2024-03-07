@@ -25,7 +25,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   value,
   onChange,
 }) => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);

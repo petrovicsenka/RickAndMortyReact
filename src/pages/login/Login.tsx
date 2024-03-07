@@ -15,7 +15,7 @@ const Login = () => {
   const [success, setSuccess] = useState<string | null>(null);
   // zadrzala sam useState samo za confirmPassword da ne bih njegovu vrednost cuvala u User interfejsu, odnosno da ne bih dva puta istu sifru cuvala (a potrebna mi je ta vrednost prilikom poredjenja sa vrednoscu password):
   const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
-  const [isRegistering, setIsRegistering] = useState(false);
+  const [isRegistering, setIsRegistering] = useState<boolean>(false);
 
   const initialUser: User = {
     username: null,
