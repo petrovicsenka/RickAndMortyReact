@@ -1,0 +1,46 @@
+.characterItem {
+  margin: 0 0.5vh;
+  display: inline-block;
+
+  img {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  img:hover {
+    transform: scale(1.1);
+    filter: brightness(60%);
+  }
+}
+
+.characters {
+  margin-top: 2.5vh;
+}
+
+.pagination {
+  margin-top: 8vh;
+}
+
+@media screen and (min-width: 640px) {
+  .pagination {
+    margin-top: 8vh;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .pagination {
+    margin-top: 9vh;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .pagination {
+    margin-top: 7vh;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .pagination {
+    margin-top: 8vh;
+  }
+}

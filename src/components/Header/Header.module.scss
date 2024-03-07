@@ -1,0 +1,41 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1vh 2vw;
+  background-color: #f0f0f0;
+  border-bottom: 0.1vh solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 98%;
+  max-height: 7%;
+}
+
+.title {
+  font-size: 3vh;
+  font-weight: bold;
+  color: #333;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  margin: 2vw;
+  background-color: #c6d3e3;
+}
+
+@media screen and (min-width: 640px) {
+  .button {
+    margin: 1vw;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .button {
+    margin-right: 2vw;
+  }
+}
