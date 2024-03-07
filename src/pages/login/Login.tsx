@@ -100,7 +100,7 @@ const Login = () => {
   const formRef = useRef<FormInstance>(null);
 
   return (
-    <Card className={styles["card-container"]}>
+    <Card className={styles.cardContainer}>
       <Form name="login" onFinish={onFinish} ref={formRef}>
         <CustomInput
           name="username"
@@ -153,7 +153,7 @@ const Login = () => {
               <Button 
                 type="link"
                 onClick={backToLogin}
-                className={styles["login-button"]}
+                className={styles.loginButton}
               >
                 {t('back')}
               </Button>
@@ -161,7 +161,7 @@ const Login = () => {
           <Button
             type="primary"
             htmlType="submit"
-            className={styles["login-button"]}
+            className={styles.loginButton}
           >
             {isRegistering ? t('submit') : t('login')}
           </Button>

@@ -20,20 +20,20 @@
 
 .controls {
   display: flex;
+  align-items: center;
 }
 
 // Sacuvala sam zakomentarisane jos neke dimenzije ekrana koje sam proveravala (720, 750, 1440px) - ali za njih nije bilo potrebe za dodatnim stilovima:
 
 //example: 480px
 .button {
-  margin: 0.2vw;
+  margin: 2vw;
   background-color: #c6d3e3;
 }
 
 @media screen and (min-width: 640px) {
   .button {
     margin: 1vw;
-    background-color: #c6d3e3;
   }
 }
 
@@ -48,7 +48,6 @@
 @media screen and (min-width: 1080px) {
   .button {
     margin-right: 2vw;
-    background-color: #c6d3e3;
   }
 }
 
