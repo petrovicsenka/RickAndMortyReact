@@ -29,12 +29,12 @@ const Header: React.FC<HeaderProps> = ({ setSearchFilter }) => {
       <div className={styles.controls}>
         <Input
           type="text"
-          placeholder="Search"
+          placeholder={t('search')}
           value={searchValue as string}
           onChange={handleSearchChange}
         />
         <Button type="default" className={styles.button} onClick={logout}>
-          Log out
+          {t('logout')}
         </Button>
       </div>
     </nav>

@@ -22,5 +22,7 @@
     "pleaseInput": "Please input your",
     "pleaseConfirm": "Please confirm your",
     "pleaseEnterValidPhone": "Please enter a valid phone number!",
-    "characterListTitle": "Rick&Morty Character List"
+    "characterListTitle": "Rick&Morty Character List",
+    "search": "Search",
+    "logout": "Log out"
 }
