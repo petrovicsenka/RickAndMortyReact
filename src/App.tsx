@@ -1,6 +1,7 @@
-import Login from './pages/login/Login'
-import CharacterContent from './pages/character-content/CharacterContent'
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import Login from './pages/Login/Login'
+import CharacterContent from './pages/characterContent/CharacterContent'
+import PageNotFound from './pages/PageNotFound/PageNotFound'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css'
 
 function App() {
@@ -8,9 +9,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route index element={<Login />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/character" element={<CharacterContent />} />
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   )

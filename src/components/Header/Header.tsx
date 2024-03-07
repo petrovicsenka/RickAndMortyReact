@@ -1,6 +1,7 @@
 import { Button, Input } from "antd";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./Header.module.scss";
 
 interface HeaderProps {
@@ -10,6 +11,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ setSearchFilter }) => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -22,22 +24,20 @@ const Header: React.FC<HeaderProps> = ({ setSearchFilter }) => {
   };
 
   return (
-    <>
-      <nav className={styles.nav}>
-        <span className={styles.title}>Rick&Morty Character List</span>
-        <div className={styles.controls}>
-          <Input
-            type="text"
-            placeholder="Search"
-            value={searchValue as string}
-            onChange={handleSearchChange}
-          />
-          <Button type="default" className={styles.button} onClick={logout}>
-            Log out
-          </Button>
-        </div>
-      </nav>
-    </>
+    <nav className={styles.nav}>
+      <span className={styles.title}>{t('characterListTitle')}</span>
+      <div className={styles.controls}>
+        <Input
+          type="text"
+          placeholder="Search"
+          value={searchValue as string}
+          onChange={handleSearchChange}
+        />
+        <Button type="default" className={styles.button} onClick={logout}>
+          Log out
+        </Button>
+      </div>
+    </nav>
   );
 }
 

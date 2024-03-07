@@ -17,9 +17,6 @@
   margin-top: 2.5vh;
 }
 
-// Sacuvala sam zakomentarisanu i sirinu ekrana od 750px koju sam proveravala - ali za nju nije bilo potrebe za dodatnim stilovima:
-
-//example: 480px
 .pagination {
   margin-top: 8vh;
 }
@@ -35,10 +32,6 @@
     margin-top: 9vh;
   }
 }
-
-// @media screen and (min-width: 750px) {
-//   //sve ok
-// }
 
 @media screen and (min-width: 1080px) {
   .pagination {
