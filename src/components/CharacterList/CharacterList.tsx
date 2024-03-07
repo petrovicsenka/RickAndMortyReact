@@ -16,6 +16,14 @@ interface Character {
   };
 }
 
+interface CharacterResponse {
+  results: Character[];
+  info: {
+    pages: number;
+  };
+}
+
+
 interface CharacterListProps {
   searchFilter: string | null;
 }
@@ -24,7 +32,7 @@ const PER_PAGE = 30;
 
 const CharacterList: React.FC<CharacterListProps> = ({ searchFilter }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const { data, isLoading, isError } = useQuery(
+  const { data, isLoading, isError } = useQuery<CharacterResponse>(
     ["characters", currentPage],
     () => getCharacters(currentPage)
   );
