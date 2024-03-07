@@ -55,7 +55,7 @@ const CharacterList: React.FC<CharacterListProps> = ({ searchFilter }) => {
     );
   });
 
-  const pageCount = data?.info?.pages;
+  const pageCount = data?.info?.pages ?? 1;
 
   return (
     <>
