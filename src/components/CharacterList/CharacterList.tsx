@@ -23,18 +23,29 @@ interface CharacterResponse {
   };
 }
 
-
 interface CharacterListProps {
   searchFilter: string | null;
+  nameFilter: string | null;
+  statusFilter: string | null;
+  speciesFilter: string | null;
+  genderFilter: string | null;
+  typeFilter: string | null;
 }
 
 const PER_PAGE = 30;
 
-const CharacterList: React.FC<CharacterListProps> = ({ searchFilter }) => {
+const CharacterList: React.FC<CharacterListProps> = ({ searchFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { data, isLoading, isError } = useQuery<CharacterResponse>(
-    ["characters", currentPage],
-    () => getCharacters(currentPage)
+    ["characters", currentPage, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter],
+    () => getCharacters(
+      currentPage, 
+      nameFilter ?? "", 
+      statusFilter ?? "", 
+      speciesFilter ?? "", 
+      genderFilter ?? "", 
+      typeFilter ?? ""
+    )
   );
 
   if (isLoading) return <div>Loading...</div>;
