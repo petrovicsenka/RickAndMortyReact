@@ -1,5 +1,5 @@
 import Login from './pages/Login/Login'
-import CharacterContent from './pages/CharacterContent/CharacterContent'
+import CharacterContent from './pages/characterContent/CharacterContent'
 import PageNotFound from './pages/PageNotFound/PageNotFound'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css'

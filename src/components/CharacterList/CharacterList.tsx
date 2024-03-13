@@ -1,9 +1,8 @@
 import { useQuery } from "react-query";
 import { Pagination } from "antd";
 import styles from "./CharacterList.module.scss";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { getCharacters } from "./CharacterList.service";
-import { CharacterDataContext } from "../CharacterDataContext/CharacterDataContext";
 
 interface Character {
   id: number;
@@ -35,13 +34,8 @@ interface CharacterListProps {
 
 const PER_PAGE = 30;
 
-// const CharacterList: React.FC<CharacterListProps> = ({ searchFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter }) => {
-const CharacterList: React.FC = ({ 
-  // searchFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter
-}) => {
+const CharacterList: React.FC<CharacterListProps> = ({ searchFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const character = useContext(CharacterDataContext);
-  
   const { data, isLoading, isError } = useQuery<CharacterResponse>(
     ["characters", currentPage, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter],
     () => getCharacters(

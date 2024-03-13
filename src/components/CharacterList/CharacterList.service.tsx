@@ -1,31 +1,30 @@
 import axios from "axios";
 
-const baseURL = "https://rickandmortyapi.com/api/character";
+const getCharacters = async (page: number, name?: string, status?: string, species?: string, gender?: string, type?: string) => {
+    let apiUrl = `https://rickandmortyapi.com/api/character?page=${page}`;
+  
+    if (name) {
+      apiUrl += `&name=${name}`;
+    }
+  
+    if (status) {
+      apiUrl += `&status=${status}`;
+    }
+  
+    if (species) {
+      apiUrl += `&species=${species}`;
+    }
+  
+    if (gender) {
+      apiUrl += `&gender=${gender}`;
+    }
 
-const getCharacters = async (
-  page: number,
-  name?: string,
-  status?: string,
-  species?: string,
-  gender?: string,
-  type?: string
-) => {
-  try {
-    const myParams = {
-      page,
-      ...(name && { name }),
-      ...(status && { status }),
-      ...(species && { species }),
-      ...(gender && { gender }),
-      ...(type && { type }),
-    };
+    if (type) {
+      apiUrl += `&type=${type}`;
+    }
 
-    const response = await axios.get(baseURL, { params: myParams });
+    const response = await axios.get(apiUrl);
     return response?.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+  };
 
 export { getCharacters };
