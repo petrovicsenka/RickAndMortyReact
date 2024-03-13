@@ -24,5 +24,9 @@
     "pleaseEnterValidPhone": "Please enter a valid phone number!",
     "characterListTitle": "Rick&Morty Character List",
     "search": "Search",
-    "logout": "Log out"
+    "logout": "Log out",
+    "name": "Name",
+    "gender": "Gender",
+    "species": "Species",
+    "locationName": "Location name"
 }
