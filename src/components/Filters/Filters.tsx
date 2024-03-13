@@ -1,8 +1,6 @@
 import { Input, Select } from "antd";
 import { useState } from "react";
 import styles from "./Filters.module.scss";
-// import debounce from "lodash/debounce";
-import { debounce } from "lodash";
 
 interface FiltersProps {
   setNameFilter: (value: string | null) => void;
@@ -25,26 +23,15 @@ const Filters: React.FC<FiltersProps> = ({
   const [genderFilterValue, setGenderFilterValue] = useState<string | null>(null);
   const [typeFilterValue, setTypeFilterValue] = useState<string | null>(null);
   
-  const handleDebouncedInputFilterChange = debounce((
-    value: string | null,
-    setInputFilterValue: (value: string | null) => void,
-    setInputFilter: (value: string | null) => void
-  ) => {
-    setInputFilterValue(value);
-    setInputFilter(value);
-  }, 2000);
-
+  //ovo je ok bez debounce-a
   const handleInputFilterChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setInputFilterValue: (value: string | null) => void,
     setInputFilter: (value: string | null) => void
   ) => {
-    console.log("Input value: ", e.target.value);
     const { value } = e.target;
     setInputFilterValue(value);
     setInputFilter(value);
-    // handleDebouncedInputFilterChange(e.target.value, setInputFilterValue, setInputFilter);
-    // handleDebouncedInputFilterChange(value, setInputFilterValue, setInputFilter);
   };
 
   const handleSelectFilterChange = (
@@ -64,7 +51,7 @@ const Filters: React.FC<FiltersProps> = ({
         placeholder="Name"
         value={nameFilterValue as string}
         // onChange={handleNameFilterChange}
-        onChange={(e) => debounce(() => {handleInputFilterChange(e, setNameFilterValue, setNameFilter)}, 2000)}
+        onChange={(e) => handleInputFilterChange(e, setNameFilterValue, setNameFilter)}
       />
       <Select
         className={styles.filterItem}
