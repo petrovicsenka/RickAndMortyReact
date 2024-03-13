@@ -21,7 +21,6 @@ export const CharacterDataContext = createContext<CharacterDataContextValues>(
 );
 
 export const CharactersContextProvider = ({ children }: any) => {
-  //   const [characters, setCharacters] = useState([]);
   const [searchFilter, setSearchFilter] = useState<string | null>(null);
   const [nameFilter, setNameFilter] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<string | null>(null);

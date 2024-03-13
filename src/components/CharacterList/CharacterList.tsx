@@ -25,23 +25,9 @@ interface CharacterResponse {
   };
 }
 
-interface CharacterListProps {
-  searchFilter: string | null;
-  nameFilter: string | null;
-  statusFilter: string | null;
-  speciesFilter: string | null;
-  genderFilter: string | null;
-  typeFilter: string | null;
-}
-
 const PER_PAGE = 30;
 
-// const CharacterList: React.FC<CharacterListProps> = ({ searchFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter }) => {
-const CharacterList: React.FC = (
-  {
-    // searchFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter
-  }
-) => {
+const CharacterList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const {
@@ -83,6 +69,8 @@ const CharacterList: React.FC = (
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
+  //*****
 
   // const filteredCharacters = data?.results?.filter((character: Character) => {
   //   if (!searchFilter) return true;

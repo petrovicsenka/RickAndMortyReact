@@ -1,65 +1,21 @@
-import { createContext, useContext, useState } from "react";
+import { useState } from "react";
 import CharacterList from "../../components/CharacterList/CharacterList";
 import Header from "../../components/Header/Header";
 import Filters from "../../components/Filters/Filters";
-import { CharacterDataContext } from "../../components/CharacterDataContext/CharacterDataContext";
-import { Input } from "antd";
-// import { CharacterDataContext } from "../../components/CharacterDataContext/CharacterDataContext";
-// import { CharacterDataContext } from "../../components/CharacterDataContext/CharacterDataContext";
-
-// export interface CharacterDataContextType {
-//   nameFilter: string | null;
-//   statusFilter: string | null;
-//   speciesFilter: string | null;
-//   genderFilter: string | null;
-//   typeFilter: string | null;
-//   setNameFilter: (value: string | null) => void;
-//   setStatusFilter: (value: string | null) => void;
-//   setSpeciesFilter: (value: string | null) => void;
-//   setGenderFilter: (value: string | null) => void;
-//   setTypeFilter: (value: string | null) => void;
-// }
-
-// const characterDataContext = createContext<CharacterDataContextType | null>(null);
 
 const CharacterContent = () => {
-  // const [searchFilter, setSearchFilter] = useState<string | null>(null);
-  // const [nameFilter, setNameFilter] = useState<string | null>(null);
-  // const [statusFilter, setStatusFilter] = useState<string | null>(null);
-  // const [speciesFilter, setSpeciesFilter] = useState<string | null>(null);
-  // const [genderFilter, setGenderFilter] = useState<string | null>(null);
-  // const [typeFilter, setTypeFilter] = useState<string | null>(null);
-
-  // const { handleUpdateFilter, genderFilter } = useContext(CharacterDataContext);
-
-  // return (
-  //   <>
-  //     <Header setSearchFilter={setSearchFilter} />
-  //     {/* <CharacterDataContext.Provider value={}> */}
-        <Filters
-          // setNameFilter={setNameFilter}
-          // setStatusFilter={setStatusFilter}
-          // setSpeciesFilter={setSpeciesFilter}
-          // setGenderFilter={setGenderFilter}
-          // setTypeFilter={setTypeFilter}
-        />
-  //       <CharacterList
-  //         // searchFilter={searchFilter}
-  //         // nameFilter={nameFilter}
-  //         // statusFilter={statusFilter}
-  //         // speciesFilter={speciesFilter}
-  //         // genderFilter={genderFilter}
-  //         // typeFilter={typeFilter}
-  //       />
-  //     {/* </CharacterDataContext.Provider> */}
-  //   </>
-  // );
+  const [searchFilter, setSearchFilter] = useState<string | null>(null);
 
   return (
-    <div>
-     <Filters />
-     <CharacterList />
-    </div>
+    <>
+      {/* proveri da li si u Header i u CharacterList fajlu sve prosledila kako treba da bi ti proradio searchbar 
+      + mozda sredi da ti se i za Header prenose podaci putem useContext (svakako je i Header, tj. cela app wrappovana sa CharacterDataContext)
+      * mozda ne radi searchBar jer se u CharacterDataContext nigde ne koristi setSearchFilter 
+      + mozda bi trebalo odavde da izbacis useState za to i iz Header komponente da izbacis props za to*/}
+      <Header setSearchFilter={setSearchFilter} />
+      <Filters />
+      <CharacterList />
+    </>
   );
 };
 
