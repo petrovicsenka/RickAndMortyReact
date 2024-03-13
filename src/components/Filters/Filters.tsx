@@ -1,6 +1,7 @@
 import { Input, Select } from "antd";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./Filters.module.scss";
+import { CharacterDataContext } from "../CharacterDataContext/CharacterDataContext";
 
 interface FiltersProps {
   setNameFilter: (value: string | null) => void;
@@ -10,55 +11,39 @@ interface FiltersProps {
   setTypeFilter: (value: string | null) => void;
 }
 
-const Filters: React.FC<FiltersProps> = ({
-  setNameFilter,
-  setStatusFilter,
-  setSpeciesFilter,
-  setGenderFilter,
-  setTypeFilter,
+// const Filters: React.FC<FiltersProps> = ({
+  const Filters: React.FC = ({
+  // setNameFilter,
+  // setStatusFilter,
+  // setSpeciesFilter,
+  // setGenderFilter,
+  // setTypeFilter,
 }) => {
-  const [nameFilterValue, setNameFilterValue] = useState<string | null>(null);
-  const [statusFilterValue, setStatusFilterValue] = useState<string | null>(null);
-  const [speciesFilterValue, setSpeciesFilterValue] = useState<string | null>(null);
-  const [genderFilterValue, setGenderFilterValue] = useState<string | null>(null);
-  const [typeFilterValue, setTypeFilterValue] = useState<string | null>(null);
+  // const [nameFilterValue, setNameFilterValue] = useState<string | null>(null);
+  // const [statusFilterValue, setStatusFilterValue] = useState<string | null>(null);
+  // const [speciesFilterValue, setSpeciesFilterValue] = useState<string | null>(null);
+  // const [genderFilterValue, setGenderFilterValue] = useState<string | null>(null);
+  // const [typeFilterValue, setTypeFilterValue] = useState<string | null>(null);
   
-  //ovo je ok bez debounce-a
-  const handleInputFilterChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    setInputFilterValue: (value: string | null) => void,
-    setInputFilter: (value: string | null) => void
-  ) => {
-    const { value } = e.target;
-    setInputFilterValue(value);
-    setInputFilter(value);
-  };
-
-  const handleSelectFilterChange = (
-    value: string,
-    setSelectFilterValue: (value: string | null) => void,
-    setSelectFilter: (value: string | null) => void
-  ) => {
-    setSelectFilterValue(value);
-    setSelectFilter(value);
-  };
+  const { handleUpdateFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter } = useContext(CharacterDataContext)
 
   return (
     <div className={styles.filters}>
+      
       <Input
         className={styles.filterItem}
         type="text"
         placeholder="Name"
-        value={nameFilterValue as string}
+        value={nameFilter as string}
         // onChange={handleNameFilterChange}
-        onChange={(e) => handleInputFilterChange(e, setNameFilterValue, setNameFilter)}
+        onChange={(e) => handleUpdateFilter('name', e.target.value)}
       />
       <Select
         className={styles.filterItem}
         placeholder="Select status"
-        value={statusFilterValue as string}
+        value={statusFilter as string}
         // onChange={(value) => handleSelectFilterChange(value)}
-        onChange={(value) => handleSelectFilterChange(value, setStatusFilterValue, setStatusFilter)}
+        onChange={(value) => handleUpdateFilter('status', value)}
       >
         <Select.Option value="">All</Select.Option>
         <Select.Option value="Alive">Alive</Select.Option>
@@ -69,16 +54,16 @@ const Filters: React.FC<FiltersProps> = ({
         className={styles.filterItem}
         type="text"
         placeholder="Species"
-        value={speciesFilterValue as string}
+        value={speciesFilter as string}
         // onChange={handleSpeciesFilterChange}
-        onChange={(e) => handleInputFilterChange(e, setSpeciesFilterValue, setSpeciesFilter)}
+        onChange={(e) => handleUpdateFilter('species', e.target.value)}
       />
       <Select
         className={styles.filterItem}
         placeholder="Select gender"
-        value={genderFilterValue as string}
+        value={genderFilter as string}
         // onChange={(value) => handleGenderFilterChange(value)}
-        onChange={(value) => handleSelectFilterChange(value, setGenderFilterValue, setGenderFilter)}
+        onChange={(value) => handleUpdateFilter('gender', value)}
       >
         <Select.Option value="">All</Select.Option>
         <Select.Option value="Female">Female</Select.Option>
@@ -90,9 +75,9 @@ const Filters: React.FC<FiltersProps> = ({
         className={styles.filterItem}
         type="text"
         placeholder="Type"
-        value={typeFilterValue as string}
+        value={typeFilter as string}
         // onChange={handleTypeFilterChange}
-        onChange={(e) => handleInputFilterChange(e, setTypeFilterValue, setTypeFilter)}
+        onChange={(e) => handleUpdateFilter('type', e.target.value)}
       />
     </div>
   );
