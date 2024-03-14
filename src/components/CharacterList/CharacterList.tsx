@@ -55,18 +55,14 @@ const CharacterList: React.FC = () => {
   //ovako se okida 1 request pri unosu inputa, ali i dalje postoji problem okidanja 2 request-a pri refresh-u app:
   const debouncedRefetch = useMemo(
     () => _.debounce(() => refetch(), 500),
-    [refetch]
+    [nameFilter, speciesFilter, typeFilter, statusFilter, genderFilter]
   );
   
   useEffect(() => {
     debouncedRefetch();
     console.log("debounceRefetch called");
-  }, [nameFilter, speciesFilter, typeFilter, debouncedRefetch]); 
+  }, [nameFilter, speciesFilter, typeFilter, statusFilter, genderFilter]); 
 
-  useEffect(() => {
-    refetch();
-    console.log("refetch called");
-  }, [statusFilter, genderFilter]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching data</div>;

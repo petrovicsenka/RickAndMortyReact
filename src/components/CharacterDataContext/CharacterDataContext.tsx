@@ -31,24 +31,28 @@ export const CharactersContextProvider = ({ children }: any) => {
   const handleUpdateFilter: TUpdateFilterHandler = (
     filterType: "name" | "status" | "species" | "gender" | "type" | "search",
     newValue: string
-  ) => { //switch...case dodaj!
-    if (filterType === "name") {
-      setNameFilter(newValue);
-    }
-    if (filterType === "status") {
-      setStatusFilter(newValue);
-    }
-    if (filterType === "species") {
-      setSpeciesFilter(newValue);
-    }
-    if (filterType === "gender") {
-      setGenderFilter(newValue);
-    }
-    if (filterType === "type") {
-      setTypeFilter(newValue);
-    }
-    if (filterType === "search") {
-      setSearchFilter(newValue);
+  ) => {
+    switch (filterType) {
+      case "name":
+        setNameFilter(newValue);
+        break;
+      case "status":
+        setStatusFilter(newValue);
+        break;
+      case "species":
+        setSpeciesFilter(newValue);
+        break;
+      case "gender":
+        setGenderFilter(newValue);
+        break;
+      case "type":
+        setTypeFilter(newValue);
+        break;
+      case "search":
+        setSearchFilter(newValue);
+        break;
+      default:
+        break;
     }
   };
 
