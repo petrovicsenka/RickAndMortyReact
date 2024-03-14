@@ -5,7 +5,7 @@ import { CharacterDataContext } from "../CharacterDataContext/CharacterDataConte
 
 const Filters: React.FC = () => {
 
-  const { handleUpdateFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter } = useContext(CharacterDataContext)
+  const { handleUpdateFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter } = useContext(CharacterDataContext);
 
   return (
     <div className={styles.filters}>

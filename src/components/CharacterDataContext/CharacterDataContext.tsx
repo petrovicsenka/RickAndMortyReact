@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 export type TUpdateFilterHandler = (
-  filterType: "name" | "status" | "species" | "gender" | "type",
+  filterType: "name" | "status" | "species" | "gender" | "type" | "search",
   newValue: string
 ) => void;
 
@@ -29,9 +29,9 @@ export const CharactersContextProvider = ({ children }: any) => {
   const [typeFilter, setTypeFilter] = useState<string | null>(null);
 
   const handleUpdateFilter: TUpdateFilterHandler = (
-    filterType: "name" | "status" | "species" | "gender" | "type",
+    filterType: "name" | "status" | "species" | "gender" | "type" | "search",
     newValue: string
-  ) => {
+  ) => { //switch...case dodaj!
     if (filterType === "name") {
       setNameFilter(newValue);
     }
@@ -46,6 +46,9 @@ export const CharactersContextProvider = ({ children }: any) => {
     }
     if (filterType === "type") {
       setTypeFilter(newValue);
+    }
+    if (filterType === "search") {
+      setSearchFilter(newValue);
     }
   };
 

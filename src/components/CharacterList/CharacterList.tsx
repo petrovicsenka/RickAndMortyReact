@@ -1,10 +1,10 @@
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import { Pagination } from "antd";
 import styles from "./CharacterList.module.scss";
-import { useContext, useEffect, useState } from "react";
 import { getCharacters } from "./CharacterList.service";
 import { CharacterDataContext } from "../CharacterDataContext/CharacterDataContext";
-import { useDebouncedCallback } from "use-debounce";
+import _ from "lodash";
 
 interface Character {
   id: number;
@@ -49,18 +49,37 @@ const CharacterList: React.FC = () => {
         speciesFilter ?? "",
         genderFilter ?? "",
         typeFilter ?? ""
-      )
+      ),
+      // {
+      //   //enabled: false
+      //   enabled: (nameFilter && nameFilter !== "") || (speciesFilter && speciesFilter !== "") || (!!typeFilter && typeFilter !== "")
+      // }
   );
 
   // Replace with lodash debounce method
-  const debounceRefetch = useDebouncedCallback(() => refetch(), 300);
+  // const debounceRefetch = _.debounce(() => refetch(), 300);
 
+  // useEffect(() => {
+  //   const debounceRefetch = _.debounce(() => refetch(), 500);
+  //   debounceRefetch();
+  //   console.log("debounceRefetch called");
+  // }, [nameFilter, speciesFilter, typeFilter]);
+
+
+  //ovako se okida 1 request pri unosu inputa, ali i dalje postoji problem okidanja 2 request-a pri refresh-u app:
+  const debouncedRefetch = useMemo(
+    () => _.debounce(() => refetch(), 500),
+    [refetch]
+  );
+  
   useEffect(() => {
-    debounceRefetch();
-  }, [nameFilter, speciesFilter, typeFilter]);
+    debouncedRefetch();
+    console.log("debounceRefetch called");
+  }, [nameFilter, speciesFilter, typeFilter, debouncedRefetch]); 
 
   useEffect(() => {
     refetch();
+    console.log("refetch called");
   }, [statusFilter, genderFilter]);
 
   if (isLoading) return <div>Loading...</div>;
