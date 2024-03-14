@@ -44,11 +44,11 @@ const CharacterList: React.FC = () => {
     () =>
       getCharacters(
         currentPage,
-        nameFilter ?? "",
-        statusFilter ?? "",
-        speciesFilter ?? "",
-        genderFilter ?? "",
-        typeFilter ?? ""
+        nameFilter ?? null,
+        statusFilter ?? null,
+        speciesFilter ?? null,
+        genderFilter ?? null,
+        typeFilter ?? null
       )
   );
 
@@ -58,6 +58,13 @@ const CharacterList: React.FC = () => {
     // [nameFilter, speciesFilter, typeFilter, statusFilter, genderFilter]
     [refetch] //mora ovako da bi se jednom okinuo request na unos input-a
   );
+
+  //ovako se okida 1 request pri unosu inputa, ali se ne okidaju request-ovi prilikom unosa pdoatka u Input:
+  // const debouncedRefetch = () => {
+  //    _.debounce(() => refetch(), 500)
+  // };
+
+
   
   useEffect(() => {
     debouncedRefetch();

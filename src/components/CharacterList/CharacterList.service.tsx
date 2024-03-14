@@ -4,11 +4,11 @@ const baseURL =  import.meta.env.VITE_REACT_APP_API_URL;
 
 const getCharacters = async (
   page: number,
-  name?: string,
-  status?: string,
-  species?: string,
-  gender?: string,
-  type?: string
+  name?: string | null,
+  status?: string | null,
+  species?: string | null,
+  gender?: string | null,
+  type?: string | null
 ) => {
   try {
     const myParams = {
