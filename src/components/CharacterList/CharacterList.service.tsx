@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://rickandmortyapi.com/api/character";
+const baseURL =  import.meta.env.VITE_REACT_APP_API_URL;
 
 const getCharacters = async (
   page: number,
