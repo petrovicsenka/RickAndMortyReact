@@ -49,22 +49,8 @@ const CharacterList: React.FC = () => {
         speciesFilter ?? "",
         genderFilter ?? "",
         typeFilter ?? ""
-      ),
-      // {
-      //   //enabled: false
-      //   enabled: (nameFilter && nameFilter !== "") || (speciesFilter && speciesFilter !== "") || (!!typeFilter && typeFilter !== "")
-      // }
+      )
   );
-
-  // Replace with lodash debounce method
-  // const debounceRefetch = _.debounce(() => refetch(), 300);
-
-  // useEffect(() => {
-  //   const debounceRefetch = _.debounce(() => refetch(), 500);
-  //   debounceRefetch();
-  //   console.log("debounceRefetch called");
-  // }, [nameFilter, speciesFilter, typeFilter]);
-
 
   //ovako se okida 1 request pri unosu inputa, ali i dalje postoji problem okidanja 2 request-a pri refresh-u app:
   const debouncedRefetch = useMemo(
