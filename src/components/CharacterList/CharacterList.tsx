@@ -3,18 +3,8 @@ import { Pagination } from "antd";
 import styles from "./CharacterList.module.scss";
 import { useState } from "react";
 import { getCharacters } from "./CharacterList.service";
-
-interface Character {
-  id: number;
-  name: string;
-  status: string;
-  species: string;
-  gender: string;
-  image: string;
-  location: {
-    name: string;
-  };
-}
+import Character from "./Character.interface";
+import CharacterDetails from "./CharacterDetails/CharacterDetails";
 
 interface CharacterResponse {
   results: Character[];
@@ -22,7 +12,6 @@ interface CharacterResponse {
     pages: number;
   };
 }
-
 
 interface CharacterListProps {
   searchFilter: string | null;
@@ -32,10 +21,19 @@ const PER_PAGE = 30;
 
 const CharacterList: React.FC<CharacterListProps> = ({ searchFilter }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const { data, isLoading, isError } = useQuery<CharacterResponse>(
     ["characters", currentPage],
     () => getCharacters(currentPage)
   );
+
+  const openModal = (character: Character) => {
+    setSelectedCharacter(character);
+  };
+
+  const closeModal = () => {
+    setSelectedCharacter(null);
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching data</div>;
@@ -70,11 +68,12 @@ const CharacterList: React.FC<CharacterListProps> = ({ searchFilter }) => {
       </div>
       <div className={styles.characters}>
         {filteredCharacters?.map((character: Character) => (
-          <div key={character?.id} className={styles.characterItem}>
+          <div key={character?.id} className={styles.characterItem} onClick={() => openModal(character)}>
             <img src={character?.image} alt={character?.name} />
           </div>
         ))}
       </div>
+      <CharacterDetails selectedCharacter={selectedCharacter} closeModal={closeModal} />
     </>
   );
 };
