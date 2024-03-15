@@ -70,7 +70,7 @@ const CharacterList: React.FC = () => {
     return () => {
       debouncedRefetch.cancel();
     };
-  }, [currentPage, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter, refetch]);
+  }, [currentPage, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
