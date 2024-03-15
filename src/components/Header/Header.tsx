@@ -7,13 +7,7 @@ import { CharacterDataContext } from "../CharacterDataContext/CharacterDataConte
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  // const [searchValue, setSearchValue] = useState<string | null>(null);
   const { t } = useTranslation();
-
-  // const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { value } = e.target;
-  //   setSearchValue(value);
-  // };
 
   const logout = () => {
     navigate('/login');

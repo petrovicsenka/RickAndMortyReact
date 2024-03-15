@@ -5,7 +5,6 @@ export type TUpdateFilterHandler = (
   newValue: string
 ) => void;
 
-// This is interface that tells us what statefull data we will be passing down to contextConsumers
 export interface CharacterDataContextValues {
   nameFilter: string | null;
   statusFilter: string | null;
@@ -15,7 +14,7 @@ export interface CharacterDataContextValues {
   searchFilter: string | null;
   handleUpdateFilter: TUpdateFilterHandler;
 }
-// Classic context generation
+
 export const CharacterDataContext = createContext<CharacterDataContextValues>(
   null as any
 );
@@ -66,7 +65,6 @@ export const CharactersContextProvider = ({ children }: any) => {
     handleUpdateFilter: handleUpdateFilter,
   };
 
-  //   Wrap children in context.Provider so that we can use this component as a wrapper component
   return (
     <CharacterDataContext.Provider value={providerData}>
       {children}

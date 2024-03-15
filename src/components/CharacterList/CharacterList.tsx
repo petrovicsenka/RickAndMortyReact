@@ -37,20 +37,22 @@ const CharacterList: React.FC = () => {
     speciesFilter,
     genderFilter,
     typeFilter,
+    searchFilter
   } = useContext(CharacterDataContext);
 
   const { isLoading, isError, data, refetch } = useQuery<CharacterResponse>(
     "characters",
-    () => getCharacters(
-      currentPage,
-      nameFilter ?? null,
-      statusFilter ?? null,
-      speciesFilter ?? null,
-      genderFilter ?? null,
-      typeFilter ?? null
-    ),
+    () => {
+      return getCharacters(
+        currentPage,
+        nameFilter || searchFilter || null,
+        statusFilter,
+        speciesFilter,
+        genderFilter,
+        typeFilter
+      );
+    },
     {
-      // This option will ensure the query does not automatically refetch on window focus
       refetchOnWindowFocus: false,
     }
   );
@@ -66,11 +68,10 @@ const CharacterList: React.FC = () => {
       debouncedRefetch();
     }
 
-    // Cleanup function to cancel the debounce if the component unmounts
     return () => {
       debouncedRefetch.cancel();
     };
-  }, [currentPage, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter]);
+  }, [currentPage, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter, searchFilter]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
