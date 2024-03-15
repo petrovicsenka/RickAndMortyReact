@@ -94,9 +94,8 @@ const CharacterList: React.FC = () => {
       </div>
       <div className={styles.characters}>
         {data?.results?.map((character: Character) => (
-          <div key={character.id} className={styles.characterItem}>
-            <img src={character.image} alt={character.name} />
-            <div>{character.name}</div>
+          <div key={character?.id} className={styles.characterItem}>
+            <img src={character?.image} alt={character?.name} />
           </div>
         ))}
       </div>
