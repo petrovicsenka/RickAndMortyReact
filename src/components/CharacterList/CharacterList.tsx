@@ -80,7 +80,7 @@ const CharacterList: React.FC = () => {
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching data</div>;
 
-  const pageCount = data?.info?.pages ?? 1;
+  const pageCount = data?.info?.pages || 1;
 
   return (
     <>
