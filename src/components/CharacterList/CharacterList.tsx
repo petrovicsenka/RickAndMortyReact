@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Pagination } from "antd";
 import styles from "./CharacterList.module.scss";
@@ -29,6 +29,7 @@ const PER_PAGE = 30;
 
 const CharacterList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [skipFirstEffect, setSkipFirstEffect] = useState<boolean>(true);
 
   const {
     nameFilter,
@@ -36,69 +37,49 @@ const CharacterList: React.FC = () => {
     speciesFilter,
     genderFilter,
     typeFilter,
-    searchFilter,
   } = useContext(CharacterDataContext);
 
-  const { data, isLoading, isError, refetch } = useQuery<CharacterResponse>(
-    ["characters"],
-    () =>
-      getCharacters(
-        currentPage,
-        nameFilter ?? null,
-        statusFilter ?? null,
-        speciesFilter ?? null,
-        genderFilter ?? null,
-        typeFilter ?? null
-      )
+  const { isLoading, isError, data, refetch } = useQuery<CharacterResponse>(
+    "characters",
+    () => getCharacters(
+      currentPage,
+      nameFilter ?? null,
+      statusFilter ?? null,
+      speciesFilter ?? null,
+      genderFilter ?? null,
+      typeFilter ?? null
+    ),
+    {
+      // This option will ensure the query does not automatically refetch on window focus
+      refetchOnWindowFocus: false,
+    }
   );
 
-  //ovako se okida 1 request pri unosu inputa, ali i dalje postoji problem okidanja 2 request-a pri refresh-u app:
-  const debouncedRefetch = useMemo(
-    () => _.debounce(() => refetch(), 500),
-    // [nameFilter, speciesFilter, typeFilter, statusFilter, genderFilter]
-    [refetch] //mora ovako da bi se jednom okinuo request na unos input-a
-  );
-
-  //ovako se okida 1 request pri unosu inputa, ali se ne okidaju request-ovi prilikom unosa pdoatka u Input:
-  // const debouncedRefetch = () => {
-  //    _.debounce(() => refetch(), 500)
-  // };
-
-
-  
   useEffect(() => {
-    debouncedRefetch();
-    console.log("debounceRefetch called");
-  }, [nameFilter, speciesFilter, typeFilter, statusFilter, genderFilter]); 
+    const debouncedRefetch = _.debounce(() => {
+      refetch();
+    }, 500);
 
+    if (skipFirstEffect) {
+      setSkipFirstEffect(false);
+    } else {
+      debouncedRefetch();
+    }
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error fetching data</div>;
+    // Cleanup function to cancel the debounce if the component unmounts
+    return () => {
+      debouncedRefetch.cancel();
+    };
+  }, [currentPage, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter, refetch]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  //*****
-
-  // const filteredCharacters = data?.results?.filter((character: Character) => {
-  //   if (!searchFilter) return true;
-  //   const filterLowerCase = searchFilter?.toLowerCase();
-  //   return (
-  //     character?.name?.toLowerCase().includes(filterLowerCase) ||
-  //     character?.status?.toLowerCase().includes(filterLowerCase) ||
-  //     character?.species?.toLowerCase().includes(filterLowerCase) ||
-  //     character?.location?.name?.toLowerCase().includes(filterLowerCase)
-  //   );
-  // });
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching data</div>;
 
   const pageCount = data?.info?.pages ?? 1;
-
-  const filteredCharacters = data?.results?.filter((character) =>
-    character.name.includes(searchFilter ?? '')
-  );
-
-  const filteredData = searchFilter ? filteredCharacters : data?.results;
 
   return (
     <>
@@ -112,10 +93,10 @@ const CharacterList: React.FC = () => {
         />
       </div>
       <div className={styles.characters}>
-        {/* {filteredCharacters?.map((character: Character) => ( */}
         {data?.results?.map((character: Character) => (
-          <div key={character?.id} className={styles.characterItem}>
-            <img src={character?.image} alt={character?.name} />
+          <div key={character.id} className={styles.characterItem}>
+            <img src={character.image} alt={character.name} />
+            <div>{character.name}</div>
           </div>
         ))}
       </div>
