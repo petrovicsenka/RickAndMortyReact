@@ -19,6 +19,10 @@ const Header: React.FC<HeaderProps> = ({ setSearchFilter }) => {
     setSearchFilter(value);
   };
 
+  const navigateToFavourites = () => {
+    navigate('/favourites');
+  };
+
   const logout = () => {
     navigate('/login');
   };
@@ -33,6 +37,9 @@ const Header: React.FC<HeaderProps> = ({ setSearchFilter }) => {
           value={searchValue as string}
           onChange={handleSearchChange}
         />
+        <Button type="default" className={styles.button} onClick={navigateToFavourites}>
+          {t('favourites')}
+        </Button>
         <Button type="default" className={styles.button} onClick={logout}>
           {t('logout')}
         </Button>

@@ -24,7 +24,10 @@ const CharacterList: React.FC<CharacterListProps> = ({ searchFilter }) => {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const { data, isLoading, isError } = useQuery<CharacterResponse>(
     ["characters", currentPage],
-    () => getCharacters(currentPage)
+    () => getCharacters(currentPage),
+    {
+      refetchOnWindowFocus: false,
+    }
   );
 
   const openModal = (character: Character) => {
