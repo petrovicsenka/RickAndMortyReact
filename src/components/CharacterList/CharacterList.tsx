@@ -3,8 +3,9 @@ import { useQuery } from "react-query";
 import { Pagination } from "antd";
 import styles from "./CharacterList.module.scss";
 import { getCharacters } from "./CharacterList.service";
-import { CharacterDataContext } from "../CharacterDataContext/CharacterDataContext";
+import { CharacterDataContext } from "../../contexts/CharacterDataContext/CharacterDataContext";
 import _ from "lodash";
+import { useTranslation } from "react-i18next";
 
 interface Character {
   id: number;
@@ -30,6 +31,7 @@ const PER_PAGE = 30;
 const CharacterList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [skipFirstEffect, setSkipFirstEffect] = useState<boolean>(true);
+  const { t } = useTranslation();
 
   const {
     nameFilter,
@@ -77,8 +79,8 @@ const CharacterList: React.FC = () => {
     setCurrentPage(page);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error fetching data</div>;
+  if (isLoading) return <div>{t('loading')}</div>;
+  if (isError) return <div>{t('errorFetchingData')}</div>;
 
   const pageCount = data?.info?.pages || 1;
 

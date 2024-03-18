@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./Header.module.scss";
-import { CharacterDataContext } from "../CharacterDataContext/CharacterDataContext";
+import { CharacterDataContext } from "../../contexts/CharacterDataContext/CharacterDataContext";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();

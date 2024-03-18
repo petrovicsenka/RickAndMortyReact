@@ -24,5 +24,14 @@
     "pleaseEnterValidPhone": "Please enter a valid phone number!",
     "characterListTitle": "Rick&Morty Character List",
     "search": "Search",
-    "logout": "Log out"
+    "logout": "Log out",
+    "allFilter": "All",
+    "aliveFilter": "Alive",
+    "deadFilter": "Dead",
+    "unknownFilter": "Unknown",
+    "femaleFilter": "Female",
+    "maleFilter": "Male",
+    "genderlessFilter": "Genderless",
+    "loading": "Loading...",
+    "errorFetchingData" : "Error fetching data!"
 }

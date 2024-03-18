@@ -1,11 +1,13 @@
 import { Input, Select } from "antd";
 import { useContext } from "react";
 import styles from "./Filters.module.scss";
-import { CharacterDataContext } from "../CharacterDataContext/CharacterDataContext";
+import { CharacterDataContext } from "../../contexts/CharacterDataContext/CharacterDataContext";
+import { useTranslation } from "react-i18next";
 
 const Filters: React.FC = () => {
 
   const { handleUpdateFilter, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter } = useContext(CharacterDataContext);
+  const { t } = useTranslation();
 
   return (
     <div className={styles.filters}>
@@ -22,10 +24,10 @@ const Filters: React.FC = () => {
         value={statusFilter as string}
         onChange={(value) => handleUpdateFilter('status', value)}
       >
-        <Select.Option value="">All</Select.Option>
-        <Select.Option value="Alive">Alive</Select.Option>
-        <Select.Option value="Dead">Dead</Select.Option>
-        <Select.Option value="unknown">Unknown</Select.Option>
+        <Select.Option value="">{t('allFilter')}</Select.Option>
+        <Select.Option value="Alive">{t('aliveFilter')}</Select.Option>
+        <Select.Option value="Dead">{t('deadFilter')}</Select.Option>
+        <Select.Option value="unknown">{t('unknownFilter')}</Select.Option>
       </Select>
       <Input
         className={styles.filterItem}
@@ -40,11 +42,11 @@ const Filters: React.FC = () => {
         value={genderFilter as string}
         onChange={(value) => handleUpdateFilter('gender', value)}
       >
-        <Select.Option value="">All</Select.Option>
-        <Select.Option value="Female">Female</Select.Option>
-        <Select.Option value="Male">Male</Select.Option>
-        <Select.Option value="Genderless">Genderless</Select.Option>
-        <Select.Option value="unknown">Unknown</Select.Option>
+        <Select.Option value="">{t('allFilter')}</Select.Option>
+        <Select.Option value="Female">{t('femaleFilter')}</Select.Option>
+        <Select.Option value="Male">{t('maleFilter')}</Select.Option>
+        <Select.Option value="Genderless">{t('genderlessFilter')}</Select.Option>
+        <Select.Option value="unknown">{t('unknownFilter')}</Select.Option>
       </Select>
       <Input
         className={styles.filterItem}
