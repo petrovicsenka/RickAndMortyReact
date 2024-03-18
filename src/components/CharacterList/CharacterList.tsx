@@ -1,23 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Pagination } from "antd";
-import styles from "./CharacterList.module.scss";
-import { getCharacters } from "./CharacterList.service";
-import { CharacterDataContext } from "../../contexts/CharacterDataContext/CharacterDataContext";
 import _ from "lodash";
 import { useTranslation } from "react-i18next";
-
-interface Character {
-  id: number;
-  name: string;
-  status: string;
-  species: string;
-  gender: string;
-  image: string;
-  location: {
-    name: string;
-  };
-}
+import { getCharacters } from "./CharacterList.service";
+import styles from "./CharacterList.module.scss";
+import { CharacterDataContext } from "../../contexts/CharacterDataContext/CharacterDataContext";
+import Character from "./Character.interface";
+import CharacterDetails from "./CharacterDetails/CharacterDetails";
 
 interface CharacterResponse {
   results: Character[];
@@ -75,6 +65,16 @@ const CharacterList: React.FC = () => {
     };
   }, [currentPage, nameFilter, statusFilter, speciesFilter, genderFilter, typeFilter, searchFilter]);
 
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+
+  const openModal = (character: Character) => {
+    setSelectedCharacter(character);
+  };
+
+  const closeModal = () => {
+    setSelectedCharacter(null);
+  };
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -97,11 +97,12 @@ const CharacterList: React.FC = () => {
       </div>
       <div className={styles.characters}>
         {data?.results?.map((character: Character) => (
-          <div key={character?.id} className={styles.characterItem}>
+          <div key={character?.id} className={styles.characterItem} onClick={() => openModal(character)}>
             <img src={character?.image} alt={character?.name} />
           </div>
         ))}
       </div>
+      <CharacterDetails selectedCharacter={selectedCharacter} closeModal={closeModal} />
     </>
   );
 };

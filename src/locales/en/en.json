@@ -33,5 +33,9 @@
     "maleFilter": "Male",
     "genderlessFilter": "Genderless",
     "loading": "Loading...",
-    "errorFetchingData" : "Error fetching data!"
+    "errorFetchingData" : "Error fetching data!",
+    "name": "Name",
+    "gender": "Gender",
+    "species": "Species",
+    "locationName": "Location name"
 }
