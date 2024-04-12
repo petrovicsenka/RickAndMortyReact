@@ -1,3 +1,28 @@
 .modelStyle {
     max-width: 349px !important;
 }
+
+// .antModalInfo {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+  
+// .ant-modal-info .ant-modal-confirm-body {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     text-align: center;
+//     height: 100%;
+//   }
+  
+//   .ant-modal-info .ant-modal-confirm-body .ant-modal-confirm-content {
+//     padding: 24px;
+//   }
+
+.antModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 350px;
+}

@@ -1,7 +1,7 @@
-import { Modal } from "antd";
-import Character from "../Character.interface";
-import styles from "./CharacterDetails.module.scss";
-import { useTranslation } from "react-i18next";
+import { Button, Modal } from 'antd';
+import Character from '../Character.interface';
+import styles from './CharacterDetails.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface CharacterDetailsProps {
   selectedCharacter: Character | null;
@@ -16,33 +16,56 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
 
   const addToFavourites = () => {
     const favouritesFromStorage =
-      localStorage.getItem("favouriteCharacters") || "[]";
+      localStorage.getItem('favouriteCharacters') || '[]';
     const favourites = JSON.parse(favouritesFromStorage);
     if (
       !favourites.some((char: Character) => char.id === selectedCharacter?.id)
     ) {
       localStorage.setItem(
-        "favouriteCharacters",
+        'favouriteCharacters',
         JSON.stringify([...favourites, selectedCharacter])
       );
-      alert("You added the character to Favourites List successfully!");
+
+      Modal.info({
+        content: 'You added the character to Favourites List successfully!',
+        onOk: closeModal,
+        //className: 'antModal'
+      });
     } else {
-      alert("This character is already in your Favourites List!");
+      Modal.error({
+        content: 'This character is already in your Favourites List!',
+        //className: 'antModal'
+      });
     }
+    closeModal();
   };
 
   const removeFromFavourites = () => {
     const favouritesFromStorage =
-      localStorage.getItem("favouriteCharacters") || "[]";
+      localStorage.getItem('favouriteCharacters') || '[]';
     const favourites = JSON.parse(favouritesFromStorage);
     const updatedFavourites = favourites.filter(
       (char: Character) => char.id !== selectedCharacter?.id
     );
-    localStorage.setItem(
-      "favouriteCharacters",
-      JSON.stringify(updatedFavourites)
-    );
-    alert("You removed the character from Favourites List successfully!");
+    if (
+      favourites.some((char: Character) => char.id === selectedCharacter?.id)
+    ) {
+      localStorage.setItem(
+        'favouriteCharacters',
+        JSON.stringify(updatedFavourites)
+      );
+      Modal.info({
+        content: 'You removed the character from Favourites List successfully!',
+        onOk: closeModal,
+        // className: 'antModal'
+      });
+    } else {
+      Modal.error({
+        content: 'This character is already out of your Favourites List!',
+        // className: 'antModal'
+      });
+    }
+    closeModal();
   };
 
   return (
@@ -58,21 +81,23 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         <>
           <img src={selectedCharacter.image} alt={selectedCharacter.name} />
           <p>
-            {t("name")}: <b>{selectedCharacter.name}</b>
+            {t('name')}: <b>{selectedCharacter.name}</b>
           </p>
           <p>
-            {t("gender")}: <b>{selectedCharacter.gender}</b>
+            {t('gender')}: <b>{selectedCharacter.gender}</b>
           </p>
           <p>
-            {t("species")}: <b>{selectedCharacter.species}</b>
+            {t('species')}: <b>{selectedCharacter.species}</b>
           </p>
           <p>
-            {t("locationName")}: <b>{selectedCharacter.location.name}</b>
+            {t('locationName')}: <b>{selectedCharacter.location.name}</b>
           </p>
           <div className={styles.buttonContainer}>
-            <button onClick={addToFavourites}>+ Favourites</button>
-            <button onClick={removeFromFavourites}>- Favourites</button>
-            <button onClick={closeModal}>Cancel</button>
+            <Button onClick={addToFavourites}>{t('addToFavourites')}</Button>
+            <Button onClick={removeFromFavourites}>
+              {t('removeFromFavourites')}
+            </Button>
+            <Button onClick={closeModal}>{t('cancel')}</Button>
           </div>
         </>
       )}

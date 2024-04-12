@@ -30,5 +30,8 @@
     "gender": "Gender",
     "species": "Species",
     "locationName": "Location name",
-    "favouritesList": "Favourites List"
+    "favouritesList": "Favourites List",
+    "addToFavourites": "Favourites +",
+    "removeFromFavourites": "Favourites -",
+    "cancel": "Cancel"
 }

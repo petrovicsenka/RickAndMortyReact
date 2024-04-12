@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Character from "../../components/CharacterList/Character.interface";
 import styles from "./Favourites.module.scss";
+import { Button } from "antd";
 
 const Favourites = () => {
   const { t } = useTranslation();
@@ -23,7 +24,7 @@ const Favourites = () => {
   return (
     <>
       <div className={styles.header}>
-        <button className={styles.buttonBack} onClick={back}>{t('back')}</button>
+        <Button className={styles.buttonBack} onClick={back}>{t('back')}</Button>
         <h2>{t('favouritesList')}</h2>
         {/* mozda zameni za span da bi bilo uniformno sa characterList */}
       </div>
