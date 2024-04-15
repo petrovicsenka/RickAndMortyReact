@@ -33,5 +33,12 @@
     "favouritesList": "Favourites List",
     "addToFavourites": "Favourites +",
     "removeFromFavourites": "Favourites -",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "save": "Save",
+    "aliveValue": "Alive",
+    "deadValue": "Dead",
+    "unknownValue": "unknown",
+    "femaleValue": "Female",
+    "maleValue": "Male",
+    "genderlessValue": "Genderless"
 }

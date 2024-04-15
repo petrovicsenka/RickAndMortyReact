@@ -21,21 +21,22 @@
 .controls {
   display: flex;
   align-items: center;
+  margin-right: 1vw;
+  // justify-content: space-between;
 }
 
-.button {
-  margin: 2vw;
-  background-color: #c6d3e3;
+.headerElement {
+  margin: 1vw;
 }
 
 @media screen and (min-width: 640px) {
-  .button {
+  .headerElement {
     margin: 1vw;
   }
 }
 
 @media screen and (min-width: 1080px) {
-  .button {
-    margin-right: 2vw;
+  .headerElement {
+    margin-right: 0.7vw;
   }
 }

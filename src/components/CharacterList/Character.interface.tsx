@@ -8,6 +8,7 @@ interface Character {
   location: {
     name: string;
   };
+  type: string;
 }
 
 export default Character;

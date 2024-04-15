@@ -36,11 +36,12 @@ const Header: React.FC<HeaderProps> = ({ setSearchFilter }) => {
           placeholder={t('search')}
           value={searchValue as string}
           onChange={handleSearchChange}
+          className={styles.headerElement}
         />
-        <Button type="default" className={styles.button} onClick={navigateToFavourites}>
+        <Button type="default" className={styles.headerElement} onClick={navigateToFavourites}>
           {t('favourites')}
         </Button>
-        <Button type="default" className={styles.button} onClick={logout}>
+        <Button type="default" className={styles.headerElement} onClick={logout}>
           {t('logout')}
         </Button>
       </div>

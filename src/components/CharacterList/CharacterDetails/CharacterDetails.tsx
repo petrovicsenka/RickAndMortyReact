@@ -29,12 +29,12 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
       Modal.info({
         content: 'You added the character to Favourites List successfully!',
         onOk: closeModal,
-        //className: 'antModal'
+        className: styles.antModal
       });
     } else {
       Modal.error({
         content: 'This character is already in your Favourites List!',
-        //className: 'antModal'
+        className: styles.antModal
       });
     }
     closeModal();
@@ -57,12 +57,12 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
       Modal.info({
         content: 'You removed the character from Favourites List successfully!',
         onOk: closeModal,
-        // className: 'antModal'
+        className: styles.antModal
       });
     } else {
       Modal.error({
         content: 'This character is already out of your Favourites List!',
-        // className: 'antModal'
+        className: styles.antModal
       });
     }
     closeModal();
@@ -93,11 +93,11 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             {t('locationName')}: <b>{selectedCharacter.location.name}</b>
           </p>
           <div className={styles.buttonContainer}>
-            <Button onClick={addToFavourites}>{t('addToFavourites')}</Button>
-            <Button onClick={removeFromFavourites}>
+            <Button onClick={closeModal}>{t('cancel')}</Button>
+            <Button type="primary" onClick={addToFavourites}>{t('addToFavourites')}</Button>
+            <Button type="primary" onClick={removeFromFavourites}>
               {t('removeFromFavourites')}
             </Button>
-            <Button onClick={closeModal}>{t('cancel')}</Button>
           </div>
         </>
       )}
