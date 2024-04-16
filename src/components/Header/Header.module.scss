@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1vh 2vw;
+  width: 100%;
+  padding: 1vh 1vw;
   background-color: #f0f0f0;
   border-bottom: 0.1vh solid #ccc;
   position: fixed;
@@ -10,6 +11,7 @@
   left: 0;
   width: 98%;
   max-height: 7%;
+  z-index: 1000;
 }
 
 .title {
@@ -22,11 +24,18 @@
   display: flex;
   align-items: center;
   margin-right: 1vw;
-  // justify-content: space-between;
 }
 
 .headerElement {
   margin: 1vw;
+}
+
+@media screen and (max-width: 639px) {
+  .inputElement {
+    width: 80px;
+    height: 32px;
+    font-size: 14px;
+  }
 }
 
 @media screen and (min-width: 640px) {

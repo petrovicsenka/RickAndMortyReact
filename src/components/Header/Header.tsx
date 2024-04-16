@@ -28,7 +28,7 @@ const Header: React.FC = () => {
           placeholder={t('search')}
           value={searchFilter as string}
           onChange={(e) => handleUpdateFilter('search', e.target.value)}
-          className={styles.headerElement}
+          className={`${styles.headerElement} ${styles.inputElement}`}
         />
         <Button type="default" className={styles.headerElement} onClick={navigateToFavourites}>
           {t('favourites')}
