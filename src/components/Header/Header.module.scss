@@ -1,3 +1,13 @@
+.burgerIcon {
+  display: block;
+  font-size: 20px;
+  margin-right: 2vw;
+}
+
+.burgerIcon:hover {
+  cursor: pointer;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -22,28 +32,40 @@
 }
 
 .title {
+  position: fixed;
+  margin-left: 18vw;
   font-size: 3vh;
   font-weight: bold;
   color: #333;
 }
 
-.controls {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
+.inputElement {
+  width: 50%;
 }
 
-@media screen and (max-width: 639px) {
-  .inputElement {
-    width: 80px;
-    height: 32px;
-    font-size: 14px;
-  }
+.headerData {
+  display: none;
+}
+
+.headerElement {
+  margin-top: 2vh;
+  margin-left: 26vw;
 }
 
 @media screen and (min-width: 640px) {
   .headerElement {
-    margin: 1vw;
+    margin-top: 2vh;
+    margin-left: 12vw;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .burgerIcon {
+    display: none;
+  }
+
+  .headerData {
+    display: block;
   }
 }
 
