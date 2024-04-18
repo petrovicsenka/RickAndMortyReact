@@ -84,8 +84,9 @@ const Header: React.FC = () => {
         styles={{
           bmOverlay: {
             width: '40%',
-            marginTop: '32px',
             right: '0',
+            height: '100%',
+            zIndex: '999'
           },
           bmMenuWrap: {
             marginTop: '44px',
@@ -95,6 +96,9 @@ const Header: React.FC = () => {
           },
           bmCrossButton: {
             display: 'none'
+          },
+          bmItemList: {
+            marginTop: '4vh'
           }
         }}
       >
