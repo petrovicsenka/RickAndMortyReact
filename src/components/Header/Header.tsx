@@ -30,7 +30,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 750) {
+      if (window.innerWidth > 1440) {
         setIsBurgerMenuOpen(false);
       }
     };

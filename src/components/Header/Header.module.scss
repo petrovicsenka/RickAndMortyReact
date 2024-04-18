@@ -56,27 +56,64 @@
 @media screen and (min-width: 640px) {
   .headerElement {
     margin-top: 2vh;
+    margin-left: 15vw;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .headerElement {
     margin-left: 12vw;
   }
 }
 
 @media screen and (min-width: 750px) {
-  .burgerIcon {
-    display: none;
+  .inputElement {
+    margin-top: 5vh;
   }
-
-  .headerData {
-    display: block;
+  
+  .headerElement {
+    margin-left: 10vw;
   }
 }
 
 @media screen and (min-width: 1080px) {
+  .inputElement {
+    margin-top: 6vh;
+  }
+
   .headerElement {
-    margin-right: 0.7vw;
+    margin-left: 0;
   }
 }
 
 @media screen and (min-width: 1440px) {
+  .headerData {
+    display: block;
+    width: 24%;
+    // align-items: center;
+  }
+
+  .inputElement {
+    width: 25%;
+    margin-top: 0; /* Uklonimo margine na input polju */
+    margin-left: 44vw;
+    // margin-right: 0
+    // right: 2vw;
+  }
+  
+  .headerElement {
+    margin-top: 0; /* Uklonimo margine na dugmicima */
+    margin-left: 1rem; /* Dodamo malu margine između dugmica */
+  }
+
+  .title {
+    margin-left: 8vw;
+  }
+
+  .burgerIcon {
+    display: none;
+  }
+
   .logo {
     width: 65px;
     height: 65px;
