@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  // width: 0%;
   width: 100%;
   padding: 1vh 1vw;
   background-color: #f0f0f0;
@@ -40,8 +41,9 @@
 }
 
 .inputElement {
-  width: 50%;
-  margin-top: 4vh;
+  width: 40%;
+  margin-top: 2vh;
+  margin-right: 0;
 }
 
 .headerData {
@@ -70,7 +72,7 @@
   .inputElement {
     margin-top: 5vh;
   }
-  
+
   .headerElement {
     margin-left: 10vw;
   }
@@ -90,20 +92,17 @@
   .headerData {
     display: block;
     width: 24%;
-    // align-items: center;
   }
 
   .inputElement {
     width: 25%;
-    margin-top: 0; /* Uklonimo margine na input polju */
+    margin-top: 0;
     margin-left: 44vw;
-    // margin-right: 0
-    // right: 2vw;
   }
-  
+
   .headerElement {
-    margin-top: 0; /* Uklonimo margine na dugmicima */
-    margin-left: 1rem; /* Dodamo malu margine između dugmica */
+    margin-top: 0;
+    margin-left: 1rem;
   }
 
   .title {

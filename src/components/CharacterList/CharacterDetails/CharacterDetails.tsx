@@ -27,13 +27,13 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
       );
 
       Modal.info({
-        content: 'You added the character to Favourites List successfully!',
+        content: t('addSuccess'),
         onOk: closeModal,
         className: styles.antModal
       });
     } else {
       Modal.error({
-        content: 'This character is already in your Favourites List!',
+        content: t('addError'),
         className: styles.antModal
       });
     }
@@ -55,13 +55,13 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         JSON.stringify(updatedFavourites)
       );
       Modal.info({
-        content: 'You removed the character from Favourites List successfully!',
+        content: t('removeSuccess'),
         onOk: closeModal,
         className: styles.antModal
       });
     } else {
       Modal.error({
-        content: 'This character is already out of your Favourites List!',
+        content: t('removeError'),
         className: styles.antModal
       });
     }

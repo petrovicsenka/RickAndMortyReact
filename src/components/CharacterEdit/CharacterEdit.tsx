@@ -4,7 +4,6 @@ import Character from '../CharacterList/Character.interface';
 import { useTranslation } from 'react-i18next';
 
 const { Option } = Select;
-
 interface EditCharacterProps {
   character: Character;
   onClose: (character: Character) => void;
