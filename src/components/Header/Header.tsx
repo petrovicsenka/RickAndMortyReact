@@ -19,9 +19,9 @@ const Header: React.FC = () => {
   const logout = () => navigate('/login');
 
   const toggleBurgerMenu = () => {
-    console.log('clikc')
+    console.log('click');
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
-  }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,25 +35,49 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const closeMenuOnClickOutside = (event: MouseEvent) => {
+      if (
+        isBurgerMenuOpen &&
+        event.target instanceof HTMLElement &&
+        !event.target.closest('.bm-menu')
+      ) {
+        setIsBurgerMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', closeMenuOnClickOutside);
+
+    return () => {
+      document.removeEventListener('click', closeMenuOnClickOutside);
+    };
+  }, [isBurgerMenuOpen]);
+
   const renderHeaderItems = () => (
     <>
-      <Input
-        type='text'
-        placeholder={t('search')}
-        value={searchFilter as string}
-        onChange={(e) => handleUpdateFilter('search', e.target.value)}
-        className={`${styles.headerElement} ${styles.inputElement}`}
-      />
-      <Button
-        type='default'
-        className={styles.headerElement}
-        onClick={navigateToFavourites}
-      >
-        {t('favourites')}
-      </Button>
-      <Button type='default' className={styles.headerElement} onClick={logout}>
-        {t('logout')}
-      </Button>
+      <div className={`${isBurgerMenuOpen ? '' : styles.burgerMenuClosed}`}>
+        <Input
+          type='text'
+          placeholder={t('search')}
+          value={searchFilter as string}
+          onChange={(e) => handleUpdateFilter('search', e.target.value)}
+          className={styles.inputElement}
+        />
+        <Button
+          type='default'
+          className={styles.headerElement}
+          onClick={navigateToFavourites}
+        >
+          {t('favourites')}
+        </Button>
+        <Button
+          type='default'
+          className={styles.headerElement}
+          onClick={logout}
+        >
+          {t('logout')}
+        </Button>
+      </div>
     </>
   );
 
@@ -69,61 +93,39 @@ const Header: React.FC = () => {
           onClick={toggleBurgerMenu}
         />
       </nav>
-      {isBurgerMenuOpen && <Menu
-        right
-        isOpen={isBurgerMenuOpen}
-        onOpen={toggleBurgerMenu}
-        onClose={toggleBurgerMenu}
-        styles={{
-          bmOverlay: {
-            width: '40%',
-            right: '0',
-            height: '100%',
-            zIndex: '999',
-          },
-          bmMenuWrap: {
-            marginTop: '44px',
-          },
-          bmMenu: {
-            // display: 'flex',
-            // flexDirection: 'column',
-            // alignItems: 'flex-start',
-            overflow: 'hidden',
-          },
-          bmCrossButton: {
-            display: 'none',
-          },
-          bmItemList: {
-            marginTop: '4vh',
-            // left: '70%',
-            width: '40%'
-          },
-        }}
-      >
-        {/* <Input
-          type='text'
-          placeholder={t('search')}
-          value={searchFilter as string}
-          onChange={(e) => handleUpdateFilter('search', e.target.value)}
-          className={`${styles.headerElement} ${styles.inputElement}`}
-        />
-        <Button
-          type='default'
-          className={styles.headerElement}
-          onClick={navigateToFavourites}
+      {isBurgerMenuOpen && (
+        <Menu
+          right
+          isOpen={isBurgerMenuOpen}
+          onOpen={toggleBurgerMenu}
+          onClose={toggleBurgerMenu}
+          styles={{
+            bmOverlay: {
+              right: '0',
+              zIndex: '999',
+            },
+            bmMenuWrap: {
+              marginTop: '6.5%', //podesi u procentima za sve dimenzije+ proveri i za 480px sirine
+              backgroundColor: 'rgba(246, 246, 246, 0.9)',
+              width: '40%',
+            },
+            bmMenu: {
+              display: 'flex',
+              justifyContent: 'center',
+              overflow: 'hidden',
+            },
+            bmCrossButton: {
+              display: 'none',
+            },
+            bmItemList: {
+              marginTop: '4vh',
+              width: '100%',
+            },
+          }}
         >
-          {t('favourites')}
-        </Button>
-        <Button
-          type='default'
-          className={styles.headerElement}
-          onClick={logout}
-        >
-          {t('logout')}
-        </Button> */}
-
-        { renderHeaderItems()}
-      </Menu>}
+          {renderHeaderItems()}
+        </Menu>
+      )}
     </>
   );
 };
