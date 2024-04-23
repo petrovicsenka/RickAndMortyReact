@@ -23,6 +23,26 @@ const Header: React.FC = () => {
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   };
 
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  useEffect(() => {
+    const calculateHeaderHeight = () => {
+      const headerElement = document.querySelector(`.${styles.nav}`);
+      if (headerElement) {
+        const height = headerElement.clientHeight;
+        setHeaderHeight(height);
+      }
+    };
+
+    calculateHeaderHeight();
+
+    window.addEventListener('resize', calculateHeaderHeight);
+
+    return () => {
+      window.removeEventListener('resize', calculateHeaderHeight);
+    };
+  }, []);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 1440) {
@@ -81,8 +101,10 @@ const Header: React.FC = () => {
     </>
   );
 
+  console.log("headerHeight", headerHeight)
+
   return (
-    <>
+    <div>
       <nav className={styles.nav}>
         <img src={logo} alt={'Rick and Morty'} className={styles.logo} />
         <span className={styles.title}>{t('characterListTitle')}</span>
@@ -105,11 +127,14 @@ const Header: React.FC = () => {
               zIndex: '999',
             },
             bmMenuWrap: {
-              marginTop: '6.5%', //podesi u procentima za sve dimenzije+ proveri i za 480px sirine
+              // height: `calc(100vh-${headerHeight})`,
               backgroundColor: 'rgba(246, 246, 246, 0.9)',
               width: '40%',
+              top: `${headerHeight}`,
+              // bottom: '0'
             },
             bmMenu: {
+              // height: 'calc(100vh - headerHeight)',
               display: 'flex',
               justifyContent: 'center',
               overflow: 'hidden',
@@ -119,14 +144,14 @@ const Header: React.FC = () => {
             },
             bmItemList: {
               marginTop: '4vh',
-              width: '100%',
+              width: '100%'
             },
           }}
         >
           {renderHeaderItems()}
         </Menu>
       )}
-    </>
+    </div>
   );
 };
 
