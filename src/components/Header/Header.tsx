@@ -19,7 +19,6 @@ const Header: React.FC = () => {
   const logout = () => navigate('/login');
 
   const toggleBurgerMenu = () => {
-    console.log('click');
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   };
 
@@ -100,8 +99,6 @@ const Header: React.FC = () => {
       </div>
     </>
   );
-
-  console.log("headerHeight", headerHeight)
 
   return (
     <div>
