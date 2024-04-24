@@ -127,14 +127,12 @@ const Header: React.FC = () => {
               zIndex: '999',
             },
             bmMenuWrap: {
-              // height: `calc(100vh-${headerHeight})`,
+              height: `calc(100vh - ${headerHeight}px)`,
               backgroundColor: 'rgba(246, 246, 246, 0.9)',
               width: '40%',
-              top: `${headerHeight}`,
-              // bottom: '0'
+              bottom: '0'
             },
             bmMenu: {
-              // height: 'calc(100vh - headerHeight)',
               display: 'flex',
               justifyContent: 'center',
               overflow: 'hidden',
