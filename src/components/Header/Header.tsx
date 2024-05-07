@@ -103,7 +103,7 @@ const Header: React.FC = () => {
   return (
     <div>
       <nav className={styles.nav}>
-        <img src={logo} alt={'Rick and Morty'} className={styles.logo} />
+        <img src={logo} alt={t('altRickAndMorty')} className={styles.logo} />
         <span className={styles.title}>{t('characterListTitle')}</span>
         <div className={styles.headerData}>{renderHeaderItems()}</div>
         <FontAwesomeIcon
