@@ -13,6 +13,7 @@ const Login = () => {
 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
   const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
   const [isRegistering, setIsRegistering] = useState<boolean>(false);
 
