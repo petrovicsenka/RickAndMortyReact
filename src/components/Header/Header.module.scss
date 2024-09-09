@@ -1,41 +1,103 @@
+.burgerIcon {
+  display: block;
+  font-size: 20px;
+  margin-right: 2vw;
+}
+
+.burgerIcon:hover {
+  cursor: pointer;
+}
+
+.burgerMenuClosed {
+  display: flex;
+  flex-direction: row;
+}
+
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1vh 2vw;
+  padding: 1vh 1vw;
   background-color: #f0f0f0;
-  border-bottom: 0.1vh solid #ccc;
   position: fixed;
   top: 0;
   left: 0;
   width: 98%;
   max-height: 7%;
+  z-index: 1000;
+}
+
+.logo {
+  width: 10%;
+  height: 10%;
+  margin-left: 2vw;
+  margin-right: 1vw;
 }
 
 .title {
+  position: fixed;
+  margin-left: 18vw;
   font-size: 3vh;
   font-weight: bold;
   color: #333;
 }
 
-.controls {
-  display: flex;
-  align-items: center;
+.inputElement {
+  width: 60%;
 }
 
-.button {
-  margin: 2vw;
-  background-color: #c6d3e3;
+.headerData {
+  display: none;
+}
+
+.headerElement {
+  margin-top: 2vh;
+  width: 60%;
 }
 
 @media screen and (min-width: 640px) {
-  .button {
-    margin: 1vw;
+  .headerElement {
+    margin-top: 2vh; //vidi da li ti treba - ako da onda u % napisi
   }
 }
 
 @media screen and (min-width: 1080px) {
-  .button {
-    margin-right: 2vw;
+  .inputElement {
+    margin-top: 6vh; //vidi da li ti treba - ako da onda u % napisi
+  }
+
+  .headerElement {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .headerData {
+    display: block;
+    width: 24%;
+  }
+
+  .inputElement {
+    width: 60%;
+    margin-top: 0;
+  }
+
+  .headerElement {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
+
+  .title {
+    margin-left: 8vw;
+    font-size: 2.8vh;
+  }
+
+  .burgerIcon {
+    display: none;
+  }
+
+  .logo {
+    width: 65px;
+    height: 65px;
   }
 }

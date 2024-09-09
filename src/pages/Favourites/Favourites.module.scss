@@ -1,0 +1,36 @@
+.characterItem {
+  margin: 0 0.5vh;
+  display: inline-block;
+
+  img {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  img:hover {
+    transform: scale(1.1);
+    filter: brightness(60%);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin: 1.3vw;
+}
+
+.buttonBack {
+  margin-right: 1.4vw;
+}
+
+.title {
+  font-size: 3vh;
+  font-weight: bold;
+  color: #333;
+}
+
+h2 {
+  margin: 0;
+  font-size: 2em;
+  font-weight: bold;
+}
